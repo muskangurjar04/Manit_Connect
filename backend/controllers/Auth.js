@@ -40,10 +40,11 @@ if (existingUser) {
     //     })
     //     await user.save()
     //    await SendVerificationCode(user.email,verificationCode)
-        return res.status(200).json({
-            success:true,
-            message:"Registered Successfully",
-            user})
+        return res.status(201).json({
+    success: true,
+    message: "Account created successfully",
+    email: user.email
+});
     }catch(error){
         console.log(error)
         
@@ -164,10 +165,14 @@ export const VerifyEmail = async (req,res) => {
     await user.save();
 
     return res.status(200).json({
-      success: true,
-      message:
-        "Email Verified Successfully",
-    });
+    success: true,
+    message: "Email Verified Successfully",
+    user: {
+        name: user.name,
+        email: user.email,
+        role: user.role,
+    }
+});
   } catch (error) {
     console.log(error);
 
@@ -213,7 +218,11 @@ export const login = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Login Successful",
-      user,
+      user: {
+        name: user.name,
+        email: user.email,
+        role: user.role
+    }
     });
   } catch (error) {
     console.log(error);
