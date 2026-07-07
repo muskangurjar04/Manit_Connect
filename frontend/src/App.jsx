@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import VerifyEmail from "./pages/VerifyEmail";
 
-import StudentDashboard from "./pages/StudentDashboard";
+//import StudentDashboard from "./pages/StudentDashboard";
 import VolunteerDashboard from "./pages/VolunteerDashboard";
 import FacultyDashboard from "./pages/FacultyDashboard";
 
@@ -14,7 +14,7 @@ function App() {
 
         <Route path="/verify" element={<VerifyEmail />} />
 
-         <Route path="/student" element={<StudentDashboard />} />
+         {/* <Route path="/student" element={<StudentDashboard />} /> */}
 
        <Route path="/volunteer" element={<VolunteerDashboard />} />
 

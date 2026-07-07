@@ -1,6 +1,12 @@
 import express from "express";
-import { createPlacement, getPendingPlacements, verifyPlacement,rejectPlacement} from "../controllers/Placement.js";
-import { submitPlacement } from "../controllers/Placement.controller.js";
+import {
+  submitPlacement,
+  createPlacement,
+  getPendingPlacements,
+  verifyPlacement,
+  rejectPlacement,
+} from "../controllers/Placement.js";
+
 import { getAllPlacements } from "../controllers/AllController.js";
 import { getFacultyAnalytics } from "../controllers/FacultyController.js";
 
@@ -10,14 +16,23 @@ import { isStudent } from "../middleware/roleMiddleware.js";
 
 const PlacementRoutes = express.Router();
 
-PlacementRoutes.post("/submit",authMiddleware,isStudent,
+// Student submits placement
+PlacementRoutes.post(
+  "/submit",
+  authMiddleware,
+  isStudent,
   upload.single("offerLetter"),
   submitPlacement
 );
+
+// Volunteer
 PlacementRoutes.post("/create", createPlacement);
-PlacementRoutes.get("/pending",getPendingPlacements);
-PlacementRoutes.put("/verify/:id" , verifyPlacement);
-PlacementRoutes.put("/reject/:id" , rejectPlacement);
+PlacementRoutes.get("/pending", getPendingPlacements);
+
+// Faculty
+PlacementRoutes.put("/verify/:id", verifyPlacement);
+PlacementRoutes.put("/reject/:id", rejectPlacement);
 PlacementRoutes.get("/all", getAllPlacements);
 PlacementRoutes.get("/faculty", getFacultyAnalytics);
+
 export default PlacementRoutes;

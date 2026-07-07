@@ -8,7 +8,6 @@ const placementSchema = new mongoose.Schema(
       required: true,
     },
 
-
     enrollmentNo: {
       type: String,
       required: true,
@@ -61,7 +60,7 @@ const placementSchema = new mongoose.Schema(
       default: "Pending",
     },
 
-      rejectionReason: {
+    rejectionReason: {
       type: String,
       default: "",
     },
