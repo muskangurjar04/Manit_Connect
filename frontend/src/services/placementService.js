@@ -1,30 +1,42 @@
 import axios from "axios";
 
-const API = "http://localhost:5000/placement";
+const API = axios.create({
+  baseURL: "http://localhost:5000",
+});
 
+// Student submits placement
+export const submitPlacement = async (formData) => {
+  const response = await API.post(
+    "/placement/submit",
+    formData,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+
+  return response.data;
+};
+
+// Volunteer Dashboard
 export const getPendingPlacements = async () => {
-  const res = await axios.get(`${API}/pending`);
+  const res = await API.get("/placement/pending");
   return res.data;
 };
 
 export const verifyPlacement = async (id) => {
-  return axios.put(`http://localhost:5000/placement/verify/${id}`);
+  return API.put(`/placement/verify/${id}`);
 };
 
-export const rejectPlacement = async (
-  id,
-  rejectionReason
-) => {
-
-  return axios.put(
-    `http://localhost:5000/placement/reject/${id}`,
-    {
-      rejectionReason,
-    }
-  );
-
+export const rejectPlacement = async (id, rejectionReason) => {
+  return API.put(`/placement/reject/${id}`, {
+    rejectionReason,
+  });
 };
+
+// Faculty Dashboard
 export const getAllPlacements = async () => {
-  const res = await axios.get("http://localhost:5000/placement/all");
+  const res = await API.get("/placement/all");
   return res.data;
 };

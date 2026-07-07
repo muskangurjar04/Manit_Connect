@@ -37,8 +37,9 @@ const Login = () => {
         "http://localhost:5000/auth/login",
         loginData
       );
-
+      
       alert(res.data.message);
+      navigate("/placement");
 
 const role = res.data.user.role;
 
