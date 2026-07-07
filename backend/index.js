@@ -5,6 +5,7 @@ import AuthRoutes from './routes/Auth.routes.js'
 import PlacementRoutes from "./routes/Placement.routes.js";
 import cors from "cors";
 
+
 dotenv.config()
 
 connectDB()

@@ -9,6 +9,10 @@ const DashboardCards = ({ placements }) => {
     (item) => item.status === "Verified"
   ).length;
 
+  const rejected = placements.filter(
+  (item) => item.status === "Rejected"
+).length
+
   const today = placements.filter((item) => {
     const created = new Date(item.createdAt).toDateString();
     const now = new Date().toDateString();
@@ -27,6 +31,10 @@ const DashboardCards = ({ placements }) => {
     {
       title: "Verified Records",
       value: verified,
+    },
+    {
+      title: "Rejected Students",
+      value: rejected,
     },
     {
       title: "Today's Reviews",

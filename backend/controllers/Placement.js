@@ -4,28 +4,24 @@ export const createPlacement = async (req, res) => {
   try {
     const {
       student,
-    //   studentName,
       enrollmentNo,
       branch,
       company,
       jobRole,
       package: ctc,
       placementType,
-      joiningDate,
       remarks,
       offerLetter,
     } = req.body;
 
     const placement = await Placement.create({
       student,
-    //   studentName,
       enrollmentNo,
       branch,
       company,
       jobRole,
       package: ctc,
       placementType,
-      joiningDate,
       remarks,
       offerLetter,
       status: "Pending",
@@ -73,8 +69,26 @@ export const getPendingPlacements = async (req, res) => {
 
 export const verifyPlacement = async (req, res) => {
   try {
+     
+    const placement = await Placement.findById(req.params.id);
 
-    const placement = await Placement.findByIdAndUpdate(
+if (!placement) {
+  return res.status(404).json({
+    success: false,
+    message: "Placement not found",
+  });
+}
+
+if (placement.status !== "Pending") {
+  return res.status(400).json({
+    success: false,
+    message: "This record has already been processed.",
+  });
+}
+
+
+
+    const updatedPlacement = await Placement.findByIdAndUpdate(
       req.params.id,
       {
         status: "Verified"
@@ -103,13 +117,31 @@ export const verifyPlacement = async (req, res) => {
 export const rejectPlacement = async (req, res) => {
   try {
 
-    const placement = await Placement.findByIdAndUpdate(
-      req.params.id,
-      {
-        status: "Rejected"
-      },
-      { new: true }
-    );
+      const placement = await Placement.findById(req.params.id);
+
+if (!placement) {
+  return res.status(404).json({
+    success: false,
+    message: "Placement not found",
+  });
+}
+
+if (placement.status !== "Pending") {
+  return res.status(400).json({
+    success: false,
+    message: "This record has already been processed.",
+  });
+}
+
+
+    const updatedPlacement = await Placement.findByIdAndUpdate(
+  req.params.id,
+  {
+    status: "Rejected",
+    rejectionReason: req.body.rejectionReason,
+  },
+  { new: true }
+);
 
     res.json({
       success: true,

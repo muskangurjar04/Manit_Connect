@@ -1,11 +1,13 @@
 import { SendVerificationCode } from "../middleware/Email.js"
 import Usermodel from "../models/User.js"
 import bcryptjs from 'bcryptjs'
+import jwt from "jsonwebtoken";
 
 export const register = async(req,res)=>{
     try{
-        const{email,password,name,role }=req.body
-        if(!email || !password || !name || !role ){
+        const{email,name,password,enrollmentNo,
+      branch, }=req.body
+        if(!name || !email ||  !password ||!enrollmentNo || !branch){
             return res.status(400).json({success:false,message:"All fields are required"})
         }
   const existingUser = await Usermodel.findOne({ email });
@@ -17,32 +19,32 @@ if (existingUser) {
       message: "Email already registered. Please Login."
     });
   }
+  return res.status(400).json({
+    success: false,
+    message:
+      "OTP already sent. Please verify your email.",
+  });
 
   // resend OTP logic
 }
-        const hashpassword=await bcryptjs.hashSync(password,10)
-        const user = new Usermodel({
+      const otp = Math.floor(100000 + Math.random() * 900000).toString();
+      const hashedPassword = await bcryptjs.hash(password, 10);
+      const user = new Usermodel({
              email,
-             password: hashpassword,
              name,
-             role,
-             
+             password: hashedPassword,
+             enrollmentNo,
+             branch,
+             role:"Student",
+             verificationCode: otp,
+             verificationCodeExpires: Date.now() + 10 * 60 * 1000,
             });
 
           await user.save();
-    //     const verificationCode = Math.floor(100000 + Math.random() * 900000).toString()
-    //     const user = new Usermodel({
-    //         email,
-    //         password:hashpassword,
-    //         name,
-    //         role,
-    //         verificationCode
-    //     })
-    //     await user.save()
-    //    await SendVerificationCode(user.email,verificationCode)
+          await SendVerificationCode(email, otp);
         return res.status(201).json({
     success: true,
-    message: "Account created successfully",
+    message: "Student Registered successfully",
     email: user.email
 });
     }catch(error){
@@ -93,7 +95,7 @@ export const SendOTP = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      message: "OTP Sent Successfully",
+      message: "Registration Successful. OTP sent to your email.",
     });
   } catch (error) {
     console.log(error);
@@ -203,6 +205,14 @@ export const login = async (req, res) => {
       });
     }
 
+    // Sirf Student aur Admin password se login karenge
+    if (user.role !== "Student" && user.role !== "Admin") {
+      return res.status(400).json({
+        success: false,
+        message: "Please login using OTP",
+      });
+    }
+
     const isMatch = await bcryptjs.compare(
       password,
       user.password
@@ -215,10 +225,26 @@ export const login = async (req, res) => {
       });
     }
 
+     const token = jwt.sign(
+      {
+        id: user._id,
+        role: user.role,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "7d",
+      }
+    );
+
+    user.lastLogin = new Date();
+    await user.save();
+
     return res.status(200).json({
       success: true,
       message: "Login Successful",
+      token,
       user: {
+         id: user._id,
         name: user.name,
         email: user.email,
         role: user.role

@@ -1,13 +1,22 @@
 import "./PendingTable.css";
 import { verifyPlacement, rejectPlacement,} from "../../services/placementService.js";
+import { useState } from "react";
+const PendingTable = ({ title, placements, loadPlacements }) => {
+  const [showModal, setShowModal] = useState(false);
 
-const PendingTable = ({ placements }) => {
+const [selectedId, setSelectedId] = useState(null);
+
+const [reason, setReason] = useState("");
+const [showReasonModal, setShowReasonModal] = useState(false);
+
+const [selectedReason, setSelectedReason] = useState("");
+
   return (
     <div className="table-container">
 
-      <h2 className="table-title">
-        Pending Verification Queue
-      </h2>
+     <h2 className="table-title">
+  {title}
+</h2>
 
       <table>
 
@@ -20,8 +29,13 @@ const PendingTable = ({ placements }) => {
             <th>Company</th>
             <th>Package</th>
             <th>Status</th>
+           {title === "Rejected Queue" && (
+  <th>Reason</th>
+)}
             <th>Offer Letter</th>
-            <th>Action</th>
+           {title === "Pending Verification Queue" && (
+  <th>Action</th>
+)}
           </tr>
 
         </thead>
@@ -31,9 +45,17 @@ const PendingTable = ({ placements }) => {
           {placements.length === 0 ? (
 
             <tr>
-              <td colSpan="7">
-                No Pending Records
-              </td>
+              <td
+  colSpan={
+    title === "Pending Verification Queue"
+      ? 8
+      : title === "Rejected Queue"
+      ? 8
+      : 7
+  }
+>
+  No Records Found
+</td>
             </tr>
 
           ) : (
@@ -57,7 +79,28 @@ const PendingTable = ({ placements }) => {
                     {item.status}
                   </span>
                 </td>
+              
+  {title === "Rejected Queue" && (
+<td>
 
+<button
+className="view-btn"
+onClick={() => {
+
+setSelectedReason(item.rejectionReason || "No reason available.");
+
+setShowReasonModal(true);
+
+}}
+>
+
+View Reason
+
+</button>
+
+</td>
+
+)}
                 
 
   {/* Offer Letter View */}
@@ -65,11 +108,7 @@ const PendingTable = ({ placements }) => {
   <button
     className="view-btn"
    onClick={() =>{
-    console.log(item.offerLetter);
-  window.open(
-    `http://localhost:5000${item.offerLetter}`,
-    "_blank"
-  )
+  window.open(item.offerLetter,"_blank");
 }}
   >
     View
@@ -77,23 +116,36 @@ const PendingTable = ({ placements }) => {
 </td>
 
   {/* Verify Button */}
+  {title === "Pending Verification Queue" && (
   <td className="action-buttons">
   <button
-    className="verify-btn"
-    onClick={() => verifyPlacement(item._id)}
-  >
-    ✔
-  </button>
+   disabled={item.status !== "Pending"}
+  className="verify-btn"
+  onClick={async () => {
+    await verifyPlacement(item._id);
+    await loadPlacements();
+  }}
+>
+  ✔
+</button>
 
   {/* Reject Button */}
   <button
-    className="reject-btn"
-    onClick={() => rejectPlacement(item._id)}
-  >
-    ✖
-  </button>
+   disabled={item.status !== "Pending"}
+  className="reject-btn"
+  onClick={() => {
+
+  setSelectedId(item._id);
+
+  setShowModal(true);
+
+}}
+>
+  ✖
+</button>
 
 </td>
+  )}
 
               </tr>
 
@@ -104,7 +156,111 @@ const PendingTable = ({ placements }) => {
         </tbody>
 
       </table>
+     {showModal && (
 
+<div className="modal-overlay">
+
+<div className="modal">
+
+<h3>Reject Placement</h3>
+
+<textarea
+
+placeholder="Enter rejection reason..."
+
+value={reason}
+
+onChange={(e)=>setReason(e.target.value)}
+
+/>
+
+<div className="modal-buttons">
+
+<button
+
+onClick={()=>{
+
+setShowModal(false);
+
+setReason("");
+
+}}
+
+>
+
+Cancel
+
+</button>
+
+<button
+
+onClick={async()=>{
+
+if(reason.trim()===""){
+
+alert("Please enter rejection reason");
+
+return;
+
+}
+
+await rejectPlacement(
+
+selectedId,
+
+reason
+
+);
+
+await loadPlacements();
+
+setReason("");
+
+setShowModal(false);
+
+}}
+
+>
+
+Reject
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+)}
+
+{showReasonModal && (
+
+<div className="modal-overlay">
+
+  <div className="modal">
+
+    <h3>Rejection Reason</h3>
+
+    <p className="reason-text">
+      {selectedReason}
+    </p>
+
+    <div className="modal-buttons">
+
+      <button
+        onClick={() => setShowReasonModal(false)}
+      >
+        Close
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+)}
     </div>
   );
 };

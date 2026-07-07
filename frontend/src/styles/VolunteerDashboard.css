@@ -7,7 +7,7 @@ body{
 .dashboard{
     padding:30px;
     min-height:100vh;
-    background:#f5f7fb;
+    background:#eef5ff;
 }
 
 .top-navbar{
@@ -63,7 +63,7 @@ body{
 
     display:grid;
 
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(5,1fr);
 
     gap:20px;
 
@@ -99,4 +99,8 @@ body{
 
     margin:0;
 
+}
+button:disabled{
+    opacity:0.5;
+    cursor:not-allowed;
 }

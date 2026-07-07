@@ -8,10 +8,6 @@ const placementSchema = new mongoose.Schema(
       required: true,
     },
 
-    // studentName: {
-    //   type: String,
-    //   required: true,
-    // },
 
     enrollmentNo: {
       type: String,
@@ -63,6 +59,11 @@ const placementSchema = new mongoose.Schema(
       type: String,
       enum: ["Pending", "Verified", "Rejected"],
       default: "Pending",
+    },
+
+      rejectionReason: {
+      type: String,
+      default: "",
     },
 
     verifiedBy: {
