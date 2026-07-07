@@ -1,45 +1,92 @@
-export default function DocumentUpload() {
+import { useState } from "react";
+import { FileUp } from "lucide-react";
+export default function DocumentUpload({ formData, handleChange, handleFileChange, handleSubmit }) {
+    
+
+
+  const onFileChange = (e) => {
+  const file = e.target.files[0];
+
+  if (!file) return;
+
+  if (file.type !== "application/pdf") {
+    alert("Only PDF files are allowed.");
+    return;
+  }
+
+  if (file.size > 5 * 1024 * 1024) {
+    alert("Maximum file size is 5 MB.");
+    return;
+  }
+
+  handleFileChange(file);
+};
+
   return (
-    <div className="bg-white rounded-3xl shadow-md border border-gray-200 overflow-hidden">
+    <div className="rounded-2xl">
 
       {/* Header */}
-      <div className="bg-violet-600 px-8 py-5">
-        <h2 className="text-2xl font-bold text-white">
-          Offer Verification
-        </h2>
+      <div className="pb-6 border-b">
+        <div className="flex items-center gap-3">
 
-        <p className="text-violet-100 mt-1">
+<FileUp
+size={24}
+className="text-blue-600"
+/>
+
+<h2 className="text-3xl font-bold text-slate-800">
+Offer Verification
+</h2>
+
+</div>
+
+       <p className="text-gray-500 mt-2">
           Upload your official offer letter for verification.
         </p>
       </div>
 
       {/* Body */}
-      <div className="p-8">
+      <div className="p-10">
 
         {/* Upload Box */}
+   
         <label className="block font-semibold mb-3">
           Offer Letter (PDF)
         </label>
 
-        <label className="border-2 border-dashed border-violet-400 rounded-2xl p-10 flex flex-col items-center justify-center cursor-pointer hover:bg-violet-50 transition">
+        <label className="border-2 border-dashed border-gray-300 rounded-3xl py-16 px-8 flex flex-col items-center justify-center hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 cursor-pointer">
 
-          <div className="text-5xl mb-4">📄</div>
+          <div className="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center text-4xl mb-5">
+📄
+</div>
 
           <h3 className="font-bold text-lg">
-            Drag & Drop PDF Here
+            Drag & Drop Offer Letter
           </h3>
 
           <p className="text-gray-500 mt-2">
-            or click to browse
+           PDF only • Maximum size 5 MB
           </p>
 
           <input
-            type="file"
-            accept=".pdf"
-            className="hidden"
-          />
+  type="file"
+  accept=".pdf"
+  className="hidden"
+  onChange={onFileChange}
+/>
 
         </label>
+             {formData.offerLetter && (
+  <div className="mt-4 rounded-xl border border-green-200 bg-green-50 p-4">
+    <p className="font-semibold text-green-700">
+      ✓ {formData.offerLetter.name}
+    </p>
+
+    <p className="text-sm text-green-600">
+      {(formData.offerLetter.size / 1024 / 1024).toFixed(2)} MB
+    </p>
+  </div>
+)}
 
         {/* Remarks */}
 
@@ -50,26 +97,29 @@ export default function DocumentUpload() {
           </label>
 
           <textarea
-            rows="5"
-            placeholder="Add any extra information..."
-            className="w-full border rounded-2xl p-4 resize-none"
-          />
+  name="remarks"
+  value={formData.remarks}
+  onChange={handleChange}
+  rows="5"
+  placeholder="Add any extra information..."
+  className="w-full border rounded-2xl p-4 resize-none"
+/>
 
         </div>
 
         {/* Buttons */}
 
-        <div className="flex justify-end gap-4 mt-8">
+        <div className="flex justify-end mt-8">
 
-          <button className="px-6 py-3 rounded-xl border font-semibold hover:bg-gray-100">
-            Save Draft
-          </button>
+  <button
+    type="button"
+    className="h-12 px-8 rounded-xl bg-blue-600 text-white font-medium shadow-md hover:bg-blue-700 transition"
+    onClick={handleSubmit}
+  >
+    Submit for Verification
+  </button>
 
-          <button className="px-8 py-3 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700">
-            Submit for Verification
-          </button>
-
-        </div>
+</div>
 
       </div>
 

@@ -1,24 +1,24 @@
 import { CircleUserRound } from "lucide-react";
-export default function StudentIdentity() {
+export default function StudentIdentity({ formData, handleChange }) {
   return (
-    <div className="bg-white rounded-3xl shadow-md border border-gray-200 overflow-hidden">
+    <div className="bg-white rounded-3xl border border-violet-200 shadow-md overflow-hidden">
 
       {/* Header */}
-      <div className="pb-6 border-b">
-        <div className="flex items-center gap-3">
+      <div className="px-8 py-6 border-b bg-violet-50">
+        <div className="flex items-center gap-3 mb-2">
 
   <CircleUserRound
     size={24}
     className="text-blue-600"
   />
 
-  <h2 className="text-3xl font-bold text-slate-800">
+  <h2 className="text-2xl font-bold text-slate-800">
     Student Identity
   </h2>
 
 </div>
 
-        <p className="text-gray-500 mt-2">
+        <p className="text-gray-500 mt-1 mb-8">
           Verify your personal and academic information
         </p>
       </div>
@@ -27,23 +27,9 @@ export default function StudentIdentity() {
 
       <div className="p-8">
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-8">
 
-          {/* Student Name */}
-
-          <div>
-
-            <label className="block text-sm font-medium text-gray-600 mb-2">
-              Student Name
-            </label>className="block text-sm font-medium text-gray-600 mb-2"
-
-            <input
-              type="text"
-              placeholder="Rahul Pandey"
-              className="w-full rounded-xl border border-gray-300 bg-gray-50 p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
-            />
-
-          </div>
+          
 
           {/* Enrollment */}
 
@@ -56,42 +42,27 @@ export default function StudentIdentity() {
             <input
               type="text"
               placeholder="231120XXX"
-                className="w-full rounded-xl border border-gray-300 bg-gray-50 p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
+              value={formData.enrollmentNo}
+              onChange={handleChange}
+              name="enrollmentNo"
+              className="w-full
+h-14
+rounded-xl
+border
+border-gray-300
+bg-white
+shadow-sm
+px-4
+text-gray-800
+focus:outline-none
+focus:ring-2
+focus:ring-blue-500 outline-none transition"
             />
 
           </div>
 
-          {/* Email */}
 
-          <div>
-
-            <label className="block text-sm font-medium text-gray-600 mb-2">
-              Email
-            </label>
-
-            <input
-              type="email"
-              placeholder="rahul@manit.ac.in"
-                className="w-full rounded-xl border border-gray-300 bg-gray-50 p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
-            />
-
-          </div>
-
-          {/* Mobile */}
-
-          <div>
-
-            <label className="block text-sm font-medium text-gray-600 mb-2">
-              Mobile Number
-            </label>
-
-            <input
-              type="text"
-              placeholder="9876543210"
-                className="w-full rounded-xl border border-gray-300 bg-gray-50 p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
-            />
-
-          </div>
+          
 
           {/* Department */}
 
@@ -101,52 +72,94 @@ export default function StudentIdentity() {
               Department
             </label>
 
-            <select className="w-full rounded-xl border border-gray-300 bg-gray-50 p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none">
+            <select
+  value={formData.department}
+  onChange={handleChange}
+  name="department"
+  className="w-full
+h-14
+rounded-xl
+border
+border-gray-300
+bg-white
+shadow-sm
+px-4
+text-gray-800
+focus:outline-none
+focus:ring-2
+focus:ring-blue-500 outline-none transition"
+>
 
-              <option>CSE</option>
-              <option>IT</option>
-              <option>ECE</option>
-              <option>Mechanical</option>
-              <option>Civil</option>
+  <option value="">Select Department</option>
 
-            </select>
+  <option value="Computer Science & Engineering">
+    Computer Science & Engineering
+  </option>
+
+  <option value="Information Technology">
+    Information Technology
+  </option>
+
+  <option value="Electronics & Communication Engineering">
+    Electronics & Communication Engineering
+  </option>
+
+  <option value="Electrical Engineering">
+    Electrical Engineering
+  </option>
+
+  <option value="Mechanical Engineering">
+    Mechanical Engineering
+  </option>
+
+  <option value="Civil Engineering">
+    Civil Engineering
+  </option>
+
+</select>
 
           </div>
+          {/* Course */}
 
-          {/* Program */}
+<div>
 
-          <div>
+  <label className="block text-sm font-medium text-gray-600 mb-2">
+    Course
+  </label>
 
-            <label className="block text-sm font-medium text-gray-600 mb-2">
-              Programme
-            </label>
+  <select
+    value={formData.course}
+    onChange={handleChange}
+    name="course"
+    className="w-full
+h-14
+rounded-xl
+border
+border-gray-300
+bg-white
+shadow-sm
+px-4
+text-gray-800
+focus:outline-none
+focus:ring-2
+focus:ring-blue-500 outline-none transition"
+  >
 
-            <select className="w-full rounded-xl border border-gray-300 bg-gray-50 p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none">
+    <option value="">Select Course</option>
 
-              <option>B.Tech</option>
-              <option>M.Tech</option>
-              <option>MCA</option>
-              <option>PhD</option>
+    <option value="B.Tech">B.Tech</option>
 
-            </select>
+    <option value="M.Tech">M.Tech</option>
 
-          </div>
+    <option value="MCA">MCA</option>
 
-          {/* Branch */}
+  </select>
 
-          <div>
+</div>
 
-            <label className="block text-sm font-medium text-gray-600 mb-2">
-              Branch
-            </label>
+          
 
-            <input
-              type="text"
-              placeholder="Computer Science & Engineering"
-              className="w-full rounded-xl border border-gray-300 bg-gray-50 p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
-            />
-
-          </div>
+          
 
           {/* Passing Year */}
 
@@ -159,7 +172,20 @@ export default function StudentIdentity() {
             <input
               type="number"
               placeholder="2027"
-                className="w-full rounded-xl border border-gray-300 bg-gray-50 p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
+              value={formData.passingYear}
+              onChange={handleChange}
+              name="passingYear"
+              className="w-full
+h-14
+rounded-xl
+border
+border-gray-200
+bg-white
+px-4
+text-gray-800
+focus:outline-none
+focus:ring-2
+focus:ring-blue-500 outline-none transition"
             />
 
           </div>

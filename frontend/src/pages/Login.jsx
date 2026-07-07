@@ -160,8 +160,9 @@ const Login = () => {
         "http://localhost:5000/auth/login",
         loginData
       );
-
+      
       alert(res.data.message);
+      navigate("/placement");
 
       // Later:
       // navigate("/dashboard");

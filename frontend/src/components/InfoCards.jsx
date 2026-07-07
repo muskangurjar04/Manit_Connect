@@ -1,40 +1,34 @@
 export default function InfoCards() {
   const cards = [
     {
-      title: "Secure Verification",
-      desc: "Your offer letter is securely stored and reviewed only by the Training & Placement Cell.",
-      icon: "🔒",
-      color: "bg-blue-50 border-blue-200",
-    },
-    {
       title: "Verification Timeline",
-      desc: "Verification generally takes 2–5 working days after submission.",
+      text: "Your submission is usually reviewed within 2–5 working days.",
+      color: "border-blue-200 bg-blue-50",
       icon: "⏳",
-      color: "bg-green-50 border-green-200",
     },
     {
-      title: "Need Help?",
-      desc: "Contact the T&P Cell if you face any issues while submitting your placement record.",
-      icon: "📞",
-      color: "bg-yellow-50 border-yellow-200",
+      title: "Secure Submission",
+      text: "Your uploaded documents are encrypted and only accessible by the T&P Cell.",
+      color: "border-green-200 bg-green-50",
+      icon: "🔒",
     },
   ];
 
   return (
-    <div className="grid md:grid-cols-3 gap-6">
+    <div className="grid md:grid-cols-2 gap-6 mt-2">
       {cards.map((card, index) => (
         <div
           key={index}
-          className={`rounded-2xl border p-6 shadow-sm ${card.color}`}
+          className={`rounded-2xl border ${card.color} p-6`}
         >
-          <div className="text-4xl">{card.icon}</div>
+          <div className="text-3xl">{card.icon}</div>
 
           <h3 className="font-bold text-lg mt-4">
             {card.title}
           </h3>
 
-          <p className="text-gray-600 mt-2 text-sm">
-            {card.desc}
+          <p className="text-gray-600 mt-2 leading-7">
+            {card.text}
           </p>
         </div>
       ))}
