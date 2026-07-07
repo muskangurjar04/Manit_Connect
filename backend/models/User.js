@@ -15,12 +15,22 @@ const userSchema = new mongoose.Schema(
 
     password: {
       type: String,
-      required: true,
+      default: null ,
     },
+
+    enrollmentNo: {
+   type: String,
+   default: "",
+   },
+
+branch: {
+  type: String,
+  default: "",
+},
  
     role: {
       type: String,
-      enum: ["Student", "TPO Volunteer","TPO Faculty"],
+      enum: ["Student", "TPO Volunteer","TPO Faculty","Admin",],
       required: true,
     },
 
@@ -36,6 +46,16 @@ verificationCodeExpires: Date,
 otpAttempts: {
   type: Number,
   default: 0,
+},
+
+lastLogin: {
+  type: Date,
+  default: null,
+},
+
+isActive: {
+  type: Boolean,
+  default: true,
 },
   },
   {

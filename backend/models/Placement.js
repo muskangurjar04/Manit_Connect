@@ -35,25 +35,34 @@ const placementSchema = new mongoose.Schema(
 
     placementType: {
       type: String,
+      enum: ["On-Campus", "Off-Campus"],
       required: true,
     },
 
     joiningDate: {
       type: Date,
+      required: true,
     },
 
     offerLetter: {
       type: String,
+      default: "",
     },
 
     remarks: {
       type: String,
+      default: "",
     },
 
     status: {
       type: String,
       enum: ["Pending", "Verified", "Rejected"],
       default: "Pending",
+    },
+
+    rejectionReason: {
+      type: String,
+      default: "",
     },
 
     verifiedBy: {
@@ -67,6 +76,4 @@ const placementSchema = new mongoose.Schema(
   }
 );
 
-const Placement = mongoose.model("Placement", placementSchema);
-
-export default Placement;
+export default mongoose.model("Placement", placementSchema);
