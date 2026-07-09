@@ -4,7 +4,7 @@ import VerifyEmail from "./pages/VerifyEmail";
 import PlacementSubmission from "./pages/PlacementSubmission";
 import ThankYou from "./pages/ThankYou";
 
-import StudentDashboard from "./pages/StudentDashboard";
+// import StudentDashboard from "./pages/StudentDashboard";
 import VolunteerDashboard from "./pages/VolunteerDashboard";
 import FacultyDashboard from "./pages/FacultyDashboard";
 
