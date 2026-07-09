@@ -26,7 +26,7 @@ PlacementRoutes.post(
 );
 
 // Volunteer
-PlacementRoutes.post("/create", createPlacement);
+PlacementRoutes.post("/create", authMiddleware, createPlacement);
 PlacementRoutes.get("/pending", getPendingPlacements);
 
 // Faculty

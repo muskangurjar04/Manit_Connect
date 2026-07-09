@@ -37,9 +37,9 @@ const Login = () => {
         "http://localhost:5000/auth/login",
         loginData
       );
-      
+     localStorage.setItem("token", res.data.token);   
       alert(res.data.message);
-      navigate("/placement");
+   
 
 const role = res.data.user.role;
 
@@ -49,6 +49,8 @@ if (role === "Student") {
   navigate("/volunteer");
 } else if (role === "TPO Faculty") {
   navigate("/faculty");
+  } else if (role === "Admin") {
+  navigate("/admin");
 }
 
       // Later:

@@ -39,10 +39,6 @@ const placementSchema = new mongoose.Schema(
       required: true,
     },
 
-    joiningDate: {
-      type: Date,
-      required: true,
-    },
 
     offerLetter: {
       type: String,

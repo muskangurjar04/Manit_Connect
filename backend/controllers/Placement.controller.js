@@ -11,8 +11,6 @@ export const submitPlacement = async (req, res) => {
       jobRole,
       package: packageValue,
       placementType,
-      joiningDate,
-     // workLocation,
       placementMode,
       remarks,
     } = req.body;
@@ -34,7 +32,6 @@ export const submitPlacement = async (req, res) => {
   jobRole,
   package: packageValue,
   placementType,
-  joiningDate,
   remarks,
   offerLetter: req.file.path, // Store the filename of the uploaded PDF
 });

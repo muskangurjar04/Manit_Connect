@@ -3,6 +3,16 @@ import axios from "axios";
 const API = axios.create({
   baseURL: "http://localhost:5000",
 });
+API.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+
+    console.log("Token from localStorage:", token);
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  console.log("Headers:", config.headers);
+  return config;
+});
 
 // Student submits placement
 export const submitPlacement = async (formData) => {

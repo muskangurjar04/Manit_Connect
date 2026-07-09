@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import VerifyEmail from "./pages/VerifyEmail";
-import PlacementSubmission from "./pages/PlacementSubmission";
+import StudentDashboard from "./pages/StudentDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
 import ThankYou from "./pages/ThankYou";
 
-import StudentDashboard from "./pages/StudentDashboard";
 import VolunteerDashboard from "./pages/VolunteerDashboard";
 import FacultyDashboard from "./pages/FacultyDashboard";
 
@@ -16,12 +16,11 @@ function App() {
 
         <Route path="/verify" element={<VerifyEmail />} />
 
-        <Route path="/placement" element={<PlacementSubmission />} />
-        <Route path="/thank-you" element={<ThankYou />} />
-
         <Route path="/student" element={<StudentDashboard />} />
+        <Route path="/thank-you" element={<ThankYou />} />
         <Route path="/volunteer" element={<VolunteerDashboard />} />
         <Route path="/faculty" element={<FacultyDashboard />} />
+        <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
     </BrowserRouter>
   );

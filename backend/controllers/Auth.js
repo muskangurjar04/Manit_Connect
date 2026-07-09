@@ -5,9 +5,8 @@ import jwt from "jsonwebtoken";
 
 export const register = async(req,res)=>{
     try{
-        const{email,name,password,enrollmentNo,
-      branch, }=req.body
-        if(!name || !email ||  !password ||!enrollmentNo || !branch){
+        const{email,name,password }=req.body;
+        if(!name || !email ||  !password ){
             return res.status(400).json({success:false,message:"All fields are required"})
         }
   const existingUser = await Usermodel.findOne({ email });
@@ -33,8 +32,6 @@ if (existingUser) {
              email,
              name,
              password: hashedPassword,
-             enrollmentNo,
-             branch,
              role:"Student",
              verificationCode: otp,
              verificationCodeExpires: Date.now() + 10 * 60 * 1000,
@@ -206,12 +203,12 @@ export const login = async (req, res) => {
     }
 
     // Sirf Student aur Admin password se login karenge
-    if (user.role !== "Student" && user.role !== "Admin") {
-      return res.status(400).json({
-        success: false,
-        message: "Please login using OTP",
-      });
-    }
+    // if (user.role !== "Student" && user.role !== "Admin") {
+    //   return res.status(400).json({
+    //     success: false,
+    //     message: "Please login using OTP",
+    //   });
+    // }
 
     const isMatch = await bcryptjs.compare(
       password,
