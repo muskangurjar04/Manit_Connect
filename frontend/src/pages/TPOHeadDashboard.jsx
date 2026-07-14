@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 
-import DashboardCards from "../components/Volunteer/DashboardCards";
-import PendingTable from "../components/Volunteer/PendingTable";
-import TopNavbar from "../components/Volunteer/TopNavbar";
+import DashboardCards from "../components/TPOHead/DashboardCards";
+import PendingTable from "../components/TPOHead/PendingTable";
+import TopNavbar from "../components/TPOHead/TopNavbar";
 
 import {
   getAllPlacements,
 } from "../services/placementService";
-import "../styles/VolunteerDashboard.css";
+import "../styles/TPOHeadDashboard.css";
 
-const VolunteerDashboard = () => {
+const TPOHeadDashboard  = () => {
 
   const [placements, setPlacements] = useState([]);
   const [search, setSearch] = useState("");
@@ -121,4 +121,4 @@ const sortedQueues = [...queues].sort((a, b) => {
   );
 };
 
-export default VolunteerDashboard;
+export default TPOHeadDashboard ;

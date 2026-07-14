@@ -5,7 +5,7 @@ import StudentDashboard from "./pages/StudentDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import ThankYou from "./pages/ThankYou";
 
-import VolunteerDashboard from "./pages/VolunteerDashboard";
+import TPOHeadDashboard from "./pages/TPOHeadDashboard";
 import FacultyDashboard from "./pages/FacultyDashboard";
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
 
         <Route path="/student" element={<StudentDashboard />} />
         <Route path="/thank-you" element={<ThankYou />} />
-        <Route path="/volunteer" element={<VolunteerDashboard />} />
+        <Route path="/tpo-head" element={<TPOHeadDashboard />}/>
         <Route path="/faculty" element={<FacultyDashboard />} />
         <Route path="/admin" element={<AdminDashboard />} />
       </Routes>

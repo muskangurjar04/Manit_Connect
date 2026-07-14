@@ -100,36 +100,7 @@ value={formData.jobRole}
 </select>
           </div>
 
-          {/* Joining Date */}
-          {/* <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">
-              Joining Date
-            </label>
-
-            <input
-              type="date"
-              name="joiningDate"
-              value={formData.joiningDate}
-              onChange={handleChange}
-              className="w-full h-14 rounded-xl border border-gray-200 bg-gray-50 px-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
-            />
-          </div> */}
-
-          {/* Work Location */}
-          {/* <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">
-              Work Location
-            </label>
-
-            <input
-              type="text"
-              name="workLocation"
-              value={formData.workLocation}
-              onChange={handleChange}
-              placeholder="Bangalore"
-              className="w-full h-14 rounded-xl border border-gray-200 bg-gray-50 px-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
-            />
-          </div> */}
+        
 
         </div>
 

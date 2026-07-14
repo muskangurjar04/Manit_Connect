@@ -11,27 +11,17 @@ export default function PlacementSubmission() {
 
 const navigate = useNavigate();
 const [formData, setFormData] = useState({
-  student: "", // Temporary ObjectId
-
   enrollmentNo: "",
-
-  department: "",
-
-  course: "",
-
-  passingYear: "",
-
+  branch: "",
   company: "",
   jobRole: "",
   package: "",
-
   placementType: "",
-  
-
+  placementMode: "",
   remarks: "",
-
   offerLetter: null,
 });
+
 const handleChange = (e) => {
   const { name, value } = e.target;
 
@@ -48,7 +38,7 @@ const handleFileChange = (file) => {
   }));
 };
 const handleSubmit = async () => {
- 
+console.log(formData); 
 
 if (!formData.company) {
   return alert("Company Name is required");
@@ -61,8 +51,12 @@ if (!formData.offerLetter) {
     const data = new FormData();
 
     Object.keys(formData).forEach((key) => {
+         for (let pair of data.entries()) {
+  console.log(pair[0], pair[1]);
+}
       data.append(key, formData[key]);
     });
+ 
 
     const res = await submitPlacement(data);
 
@@ -83,14 +77,14 @@ setTimeout(() => {
   }
 };
   return (
+  
+  <div className="min-h-screen w-full flex justify-center bg-[#F7F9FC] py-10"> 
+  <div className="w-full max-w-6xl mx-auto px-6">
 
-   <div className="min-h-screen bg-[#F7F9FC]">
-
-      <div className="max-w-7xl mx-auto px-8">
-      <div className="pt-8">
+     {/* <div className="pt-10 pb-8"> */}
  {/* Top Header */}
-
-      <div className="flex items-center gap-4 pt-6 pb-6">
+<div className="mt-10">
+      <div className="flex items-center gap-4 pt-12 pb-6">
 
         <img
           src={manitLogo}
@@ -111,35 +105,10 @@ setTimeout(() => {
       </div>
        <div className="bg-white rounded-2xl border border-blue-100 px-6 py-4 shadow-sm">
 
-      <p className="font-semibold text-blue-700">
-        Secure & Verified
-      </p>
-
-      <p className="text-sm text-gray-500">
-        T&P Cell Verified
-      </p>
 
     </div>
 
-      
-  {/* Breadcrumb */}
-
-  <div className="flex items-center gap-2 text-sm">
-
-    <span className="text-gray-500">
-      Dashboard
-    </span>
-
-    <span className="text-gray-400">
-      &gt;
-    </span>
-
-    <span className="text-blue-600 font-medium">
-      New Submission
-    </span>
-
-  </div>
-
+  
   {/* Title */}
 
   <h1 className="text-3xl font-bold text-slate-900 mt-3">
@@ -197,7 +166,7 @@ overflow-hidden
 
 </div>
 </div>
-    </div>
+</div>
 
   );
 }

@@ -94,11 +94,12 @@ const exportPDF = () => {
       onChange={(e) => setBranch(e.target.value)}
     >
       <option value="">All Branches</option>
-      <option>CSE</option>
-      <option>IT</option>
-      <option>ECE</option>
-      <option>Mechanical</option>
-      <option>Civil</option>
+      <option value="CSE">Computer Science & Engineering</option>
+<option value="IT">Information Technology</option>
+<option value="ECE">Electronics & Communication Engineering</option>
+<option value="EE">Electrical Engineering</option>
+<option value="ME">Mechanical Engineering</option>
+<option value="CE">Civil Engineering</option>
     </select>
 <button
   className="export-btn"

@@ -1,10 +1,10 @@
 import { CircleUserRound } from "lucide-react";
 export default function StudentIdentity({ formData, handleChange }) {
   return (
-    <div className="bg-white rounded-3xl border border-violet-200 shadow-md overflow-hidden">
+   <div className="bg-white rounded-3xl border border-slate-200 shadow-lg overflow-hidden mb-8">
 
       {/* Header */}
-      <div className="px-8 py-6 border-b bg-violet-50">
+    <div className="px-8 py-6 bg-violet-50 border-b border-violet-200">
         <div className="flex items-center gap-3 mb-2">
 
   <CircleUserRound
@@ -25,17 +25,17 @@ export default function StudentIdentity({ formData, handleChange }) {
 
       {/* Body */}
 
-      <div className="p-8">
-
-        <div className="grid grid-cols-2 md:grid-cols-2 gap-8">
+      {/* <div className="p-8"> */}
+<div className="p-8 pt-10">
+       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
 
           
 
           {/* Enrollment */}
 
-          <div>
+         <div className="flex flex-col gap-2">
 
-            <label className="block text-sm font-medium text-gray-600 mb-2">
+            <label className="text-sm font-semibold text-slate-700">
               Enrollment Number
             </label>
 
@@ -46,17 +46,17 @@ export default function StudentIdentity({ formData, handleChange }) {
               onChange={handleChange}
               name="enrollmentNo"
               className="w-full
-h-14
+h-[-56px]
 rounded-xl
 border
 border-gray-300
 bg-white
 shadow-sm
-px-4
+px-5
 text-gray-800
 focus:outline-none
 focus:ring-2
-focus:ring-blue-500 outline-none transition"
+focus:ring-violet-500 focus:border-violet-500"
             />
 
           </div>
@@ -66,53 +66,53 @@ focus:ring-blue-500 outline-none transition"
 
           {/* Department */}
 
-          <div>
+         <div className="flex flex-col gap-2">
 
-            <label className="block text-sm font-medium text-gray-600 mb-2">
-              Department
+            <label className="text-sm font-semibold text-slate-700">
+              Branch
             </label>
 
-            <select
-  value={formData.department}
+    <select
+  name="branch"
+  value={formData.branch}
   onChange={handleChange}
-  name="department"
   className="w-full
-h-14
+h-[-56px]
 rounded-xl
 border
 border-gray-300
 bg-white
 shadow-sm
-px-4
+px-5
 text-gray-800
 focus:outline-none
 focus:ring-2
-focus:ring-blue-500 outline-none transition"
+focus:ring-violet-500 focus:border-violet-500"
 >
 
-  <option value="">Select Department</option>
+  <option value="">Select Branch</option>
 
-  <option value="Computer Science & Engineering">
+  <option value="CSE">
     Computer Science & Engineering
   </option>
 
-  <option value="Information Technology">
+  <option value="IT">
     Information Technology
   </option>
 
-  <option value="Electronics & Communication Engineering">
+  <option value="ECE">
     Electronics & Communication Engineering
   </option>
 
-  <option value="Electrical Engineering">
+  <option value="EE">
     Electrical Engineering
   </option>
 
-  <option value="Mechanical Engineering">
+  <option value="ME">
     Mechanical Engineering
   </option>
 
-  <option value="Civil Engineering">
+  <option value="CE">
     Civil Engineering
   </option>
 
@@ -121,9 +121,9 @@ focus:ring-blue-500 outline-none transition"
           </div>
           {/* Course */}
 
-<div>
+<div className="flex flex-col gap-2">
 
-  <label className="block text-sm font-medium text-gray-600 mb-2">
+  <label className="text-sm font-semibold text-slate-700">
     Course
   </label>
 
@@ -132,17 +132,17 @@ focus:ring-blue-500 outline-none transition"
     onChange={handleChange}
     name="course"
     className="w-full
-h-14
+h-[-56px]
 rounded-xl
 border
 border-gray-300
 bg-white
 shadow-sm
-px-4
+px-5
 text-gray-800
 focus:outline-none
 focus:ring-2
-focus:ring-blue-500 outline-none transition"
+focus:ring-violet-500 focus:border-violet-500"
   >
 
     <option value="">Select Course</option>
@@ -163,9 +163,9 @@ focus:ring-blue-500 outline-none transition"
 
           {/* Passing Year */}
 
-          <div>
+          <div className="flex flex-col gap-2">
 
-            <label className="block text-sm font-medium text-gray-600 mb-2">
+            <label className="text-sm font-semibold text-slate-700">
               Passing Year
             </label>
 
@@ -176,16 +176,16 @@ focus:ring-blue-500 outline-none transition"
               onChange={handleChange}
               name="passingYear"
               className="w-full
-h-14
+h-[-56px]
 rounded-xl
 border
-border-gray-200
+border-gray-300
 bg-white
-px-4
+px-5
 text-gray-800
 focus:outline-none
 focus:ring-2
-focus:ring-blue-500 outline-none transition"
+focus:ring-violet-500 focus:border-violet-500"
             />
 
           </div>
