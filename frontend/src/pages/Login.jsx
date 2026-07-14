@@ -37,6 +37,8 @@ const Login = () => {
         "http://localhost:5000/auth/login",
         loginData
       );
+      localStorage.setItem("token", res.data.token);
+      console.log(res.data);
       
       alert(res.data.message);
       navigate("/placement");

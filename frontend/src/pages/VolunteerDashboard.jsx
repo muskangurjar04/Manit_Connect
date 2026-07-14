@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import DashboardCards from "../components/Volunteer/DashboardCards";
 import PendingTable from "../components/Volunteer/PendingTable";
 import TopNavbar from "../components/Volunteer/TopNavbar";
+import CompanyFollowUpForm from "../components/FollowUp/CompanyFollowUpForm";
+import RecentReports from "../components/Volunteer/RecentReports";
 
 import {
   getAllPlacements,
@@ -104,6 +106,8 @@ const sortedQueues = [...queues].sort((a, b) => {
       <DashboardCards
         placements={placements}
       />
+      <CompanyFollowUpForm />
+      <RecentReports />
 
   {sortedQueues.map((queue) => (
 

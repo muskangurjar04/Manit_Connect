@@ -3,7 +3,7 @@ import Login from "./pages/Login";
 import VerifyEmail from "./pages/VerifyEmail";
 import PlacementSubmission from "./pages/PlacementSubmission";
 import ThankYou from "./pages/ThankYou";
-
+import VolunteerFollowUp from "./pages/VolunteerFollowUp";
 // import StudentDashboard from "./pages/StudentDashboard";
 import VolunteerDashboard from "./pages/VolunteerDashboard";
 import FacultyDashboard from "./pages/FacultyDashboard";
@@ -18,8 +18,12 @@ function App() {
 
         <Route path="/placement" element={<PlacementSubmission />} />
         <Route path="/thank-you" element={<ThankYou />} />
+        <Route
+    path="/volunteer/followup"
+    element={<VolunteerFollowUp />}
+/>
 
-        <Route path="/student" element={<StudentDashboard />} />
+        {/* <Route path="/student" element={<StudentDashboard />} /> */}
 
         <Route path="/volunteer" element={<VolunteerDashboard />} />
 
