@@ -1,0 +1,11 @@
+.faculty-navbar{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 5px 25px 0px;
+}
+
+.faculty-navbar h2{
+    font-size: 20px;
+    font-weight: 700;
+}

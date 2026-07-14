@@ -1,0 +1,99 @@
+.table-container {
+  background: white;
+  margin-top: 30px;
+  padding: 24px;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.table-title {
+  font-size: 34px;
+  font-weight: 700;
+  margin:20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f5f5f5;
+}
+
+th {
+  padding: 18px;
+  text-align: left;
+  font-size: 17px;
+}
+
+td {
+  padding: 18px;
+  border-bottom: 1px solid #eee;
+  font-size: 16px;
+}
+
+tbody tr:hover {
+  background: #fafafa;
+}
+
+.table-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0px;
+  
+}
+
+.table-actions{
+  display: flex;
+  justify-content:flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-bottom:20px;
+}
+
+.table-actions input{
+  width: 280px;
+  padding: 0px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  height:48px;
+}
+
+.table-actions select{
+  width: 180px;
+  /* padding: 10px; */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  height:48px;
+  padding: 0 12px;
+}
+
+.export-btn{
+  width: 105px;
+  height: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+
+  padding: 0;
+  margin: 0;
+  position: static;
+}
+
+
+.export-btn:hover{
+  background:#1d4ed8;
+}

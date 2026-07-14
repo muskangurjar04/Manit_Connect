@@ -1,129 +1,6 @@
-// import { useState } from "react";
-// import axios from "axios";
-// import { useNavigate } from "react-router-dom";
-
-// const Login = () => {
-//   const navigate = useNavigate();
-
-//   const [formData, setFormData] = useState({
-//     email: "",
-//     password: "",
-//   });
-
-//   const handleChange = (e) => {
-//     setFormData({
-//       ...formData,
-//       [e.target.name]: e.target.value,
-//     });
-//   };
-
-//   const handleLogin = async (e) => {
-//     e.preventDefault();
-
-//     try {
-//       const res = await axios.post(
-//         "http://localhost:5000/auth/login",
-//         formData
-//       );
-
-//       alert(res.data.message);
-
-//       console.log(res.data.user);
-
-//       // future dashboard
-//       // navigate("/dashboard");
-//     } catch (error) {
-//       alert(
-//         error.response?.data?.message ||
-//           "Login Failed"
-//       );
-//     }
-//   };
-
-//   return (
-//     <div
-//       style={{
-//         width: "400px",
-//         margin: "100px auto",
-//         padding: "30px",
-//         boxShadow: "0 0 10px rgba(0,0,0,0.1)",
-//         borderRadius: "10px",
-//       }}
-//     >
-//       <h2>Login</h2>
-
-//       <form onSubmit={handleLogin}>
-//         <input
-//           type="email"
-//           name="email"
-//           placeholder="Enter Email"
-//           value={formData.email}
-//           onChange={handleChange}
-//           style={{
-//             width: "100%",
-//             padding: "10px",
-//             marginBottom: "15px",
-//           }}
-//         />
-
-//         <input
-//           type="password"
-//           name="password"
-//           placeholder="Enter Password"
-//           value={formData.password}
-//           onChange={handleChange}
-//           style={{
-//             width: "100%",
-//             padding: "10px",
-//             marginBottom: "15px",
-//           }}
-//         />
-
-//         <button
-//           type="submit"
-//           style={{
-//             width: "100%",
-//             padding: "10px",
-//             cursor: "pointer",
-//           }}
-//         >
-//           Login
-//         </button>
-//       </form>
-
-//       <p
-//         style={{
-//           textAlign: "center",
-//           marginTop: "15px",
-//         }}
-//       >
-//         New User?
-//         <span
-//           onClick={() =>
-//             navigate("/register")
-//           }
-//           style={{
-//             color: "blue",
-//             cursor: "pointer",
-//             marginLeft: "5px",
-//           }}
-//         >
-//           Sign Up
-//         </span>
-//       </p>
-//     </div>
-//   );
-// };
-
-// export default Login;
-
-
-
-
-
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/Auth.css";
 
 const Login = () => {
@@ -160,8 +37,21 @@ const Login = () => {
         "http://localhost:5000/auth/login",
         loginData
       );
-
+      localStorage.setItem("token", res.data.token);
+      console.log(res.data);
+      
       alert(res.data.message);
+      navigate("/placement");
+
+const role = res.data.user.role;
+
+if (role === "Student") {
+  navigate("/student");
+} else if (role === "TPO Volunteer") {
+  navigate("/volunteer");
+} else if (role === "TPO Faculty") {
+  navigate("/faculty");
+}
 
       // Later:
       // navigate("/dashboard");
@@ -189,8 +79,11 @@ const Login = () => {
       );
 
       alert(res.data.message);
-
-      navigate("/verify");
+navigate("/verify", {
+  state: {
+    email: registerData.email,
+  },
+});
     } catch (error) {
       alert(error.response?.data?.message || "Registration Failed");
     }

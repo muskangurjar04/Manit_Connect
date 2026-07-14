@@ -1,9 +1,14 @@
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const VerifyEmail = () => {
+
+  const location = useLocation();
+const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
-  email: "",
+  email: location.state?.email || "",
   code: "",
 });
 
@@ -34,51 +39,79 @@ const sendOTP = async () => {
   }
       );
 
-      alert(res.data.message);
+     alert(res.data.message);
+
+const role = res.data.user.role;
+
+if (role === "Student") {
+  navigate("/student");
+} else if (role === "TPO Volunteer") {
+  navigate("/volunteer");
+} else {
+  navigate("/faculty");
+}
     } catch (error) {
       alert(error.response?.data?.message || "Verification Failed");
     }
   };
 
   return (
-    <div style={{ padding: "30px" }}>
-      <h2>Verify Email</h2>
+  <div className="auth-container">
+    <div className="overlay"></div>
+
+    <div className="auth-card">
+
+      <h1>Verify Email</h1>
+
+      <p className="subtitle">
+        Enter the OTP sent to your email
+      </p>
 
       <form onSubmit={handleVerify}>
-  <div style={{ display: "flex", gap: "10px" }}>
-  <input
+
+        <input
     type="email"
-    placeholder="Enter Email"
     value={formData.email}
-    onChange={(e) =>
-      setFormData({ ...formData, email: e.target.value })
-    }
-  />
-
-  <button
-    type="button"
-    onClick={sendOTP}
-  >
-    Send OTP
-  </button>
-</div>
-
-<input
-  type="text"
-  placeholder="Enter OTP"
-  value={formData.code}
-  onChange={(e) =>
-    setFormData({ ...formData, code: e.target.value })
-  }
+    readOnly
+    style={{
+      background:"#f5f5f5",
+      cursor:"not-allowed"
+    }}
 />
 
-        <br />
-        <br />
+        <button
+          type="button"
+          className="secondary-btn"
+          onClick={sendOTP}
+        >
+          Send OTP
+        </button>
 
-        <button type="submit">Verify</button>
+        <input
+          type="text"
+          placeholder="Enter 6-digit OTP"
+          value={formData.code}
+          onChange={(e) =>
+            setFormData({
+              ...formData,
+              code: e.target.value,
+            })
+          }
+          required
+        />
+
+        <button
+          type="submit"
+          className="main-btn"
+        >
+          Verify Email
+        </button>
+
       </form>
+
     </div>
-  );
+  </div>
+);
 };
 
 export default VerifyEmail;
