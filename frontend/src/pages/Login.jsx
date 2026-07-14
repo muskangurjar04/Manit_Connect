@@ -28,10 +28,12 @@ const Login = () => {
       [e.target.name]: e.target.value,
     });
   };
+
   const sendLoginOTP = async () => {
   try {
     if (!loginData.role || !loginData.email) {
       return alert("Please select role and enter email.");
+
     }
 
     const res = await axios.post(
