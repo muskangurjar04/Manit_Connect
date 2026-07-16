@@ -75,7 +75,7 @@ const handleLogin = async (e) => {
     } else if (role === "TPO Volunteer") {
       navigate("/volunteer");
     } else if (role === "TPO Head") {
-      navigate("/tpo-head");      // baad me banayenge
+      navigate("/tpo-head");     
     } else if (role === "TPO Faculty") {
       navigate("/faculty");
     } else if (role === "Admin") {

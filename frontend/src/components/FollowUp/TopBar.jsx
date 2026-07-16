@@ -16,14 +16,6 @@ function TopBar() {
 
       </div>
 
-      <button className="new-report-btn">
-
-        <Plus size={20} />
-
-        New Report
-
-      </button>
-
     </div>
   );
 }

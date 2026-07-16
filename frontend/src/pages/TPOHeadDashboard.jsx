@@ -4,7 +4,6 @@ import DashboardCards from "../components/TPOHead/DashboardCards";
 import PendingTable from "../components/TPOHead/PendingTable";
 import TopNavbar from "../components/TPOHead/TopNavbar";
 
-import CompanyFollowUpForm from "../components/FollowUp/CompanyFollowUpForm";
 import RecentReports from "../components/TPOHead/RecentReports";
 
 import { getAllPlacements } from "../services/placementService";
@@ -92,9 +91,6 @@ const TPOHeadDashboard = () => {
 
       <DashboardCards placements={placements} />
 
-      <CompanyFollowUpForm />
-
-      <RecentReports />
 
       {sortedQueues.map((queue) => (
         <PendingTable
@@ -104,7 +100,7 @@ const TPOHeadDashboard = () => {
           loadPlacements={loadPlacements}
         />
       ))}
-
+      <RecentReports />
     </div>
   );
 };

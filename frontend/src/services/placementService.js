@@ -16,11 +16,16 @@ API.interceptors.request.use((config) => {
 
 // Student submits placement
 export const submitPlacement = async (formData) => {
+  const token = localStorage.getItem("token");
+
+  console.log("Student Token:", token);
+
   const response = await API.post(
     "/placement/submit",
     formData,
     {
       headers: {
+        Authorization: `Bearer ${token}`,
         "Content-Type": "multipart/form-data",
       },
     }
@@ -28,7 +33,6 @@ export const submitPlacement = async (formData) => {
 
   return response.data;
 };
-
 // Volunteer Dashboard
 export const getPendingPlacements = async () => {
   const res = await API.get("/placement/pending");

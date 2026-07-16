@@ -102,14 +102,11 @@ export const SendOTP = async (req, res) => {
   }
 };
 
-export const VerifyEmail = async (req,res) => {
+export const VerifyEmail = async (req, res) => {
   try {
     const { email, code } = req.body;
 
-    const user =
-      await Usermodel.findOne({
-        email,
-      });
+    const user = await Usermodel.findOne({ email });
 
     if (!user) {
       return res.status(404).json({
@@ -121,16 +118,12 @@ export const VerifyEmail = async (req,res) => {
     if (user.otpAttempts >= 5) {
       return res.status(400).json({
         success: false,
-        message:
-          "Too many attempts. Request new OTP.",
+        message: "Too many attempts. Request new OTP.",
       });
     }
 
-    if (
-      user.verificationCode !== code
-    ) {
+    if (user.verificationCode !== code) {
       user.otpAttempts += 1;
-
       await user.save();
 
       return res.status(400).json({
@@ -139,37 +132,45 @@ export const VerifyEmail = async (req,res) => {
       });
     }
 
-    if (
-      user.verificationCodeExpires <
-      Date.now()
-    ) {
+    if (user.verificationCodeExpires < Date.now()) {
       return res.status(400).json({
         success: false,
         message: "OTP Expired",
       });
     }
 
+    // Verify user
     user.isVerified = true;
-
-    user.verificationCode =
-      undefined;
-
-    user.verificationCodeExpires =
-      undefined;
-
+    user.verificationCode = undefined;
+    user.verificationCodeExpires = undefined;
     user.otpAttempts = 0;
 
     await user.save();
 
+    // ✅ Generate JWT
+    const token = jwt.sign(
+      {
+        id: user._id,
+        role: user.role,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "7d",
+      }
+    );
+
     return res.status(200).json({
-    success: true,
-    message: "Email Verified Successfully",
-    user: {
+      success: true,
+      message: "Email Verified Successfully",
+      token,
+      user: {
+        id: user._id,
         name: user.name,
         email: user.email,
         role: user.role,
-    }
-});
+      },
+    });
+
   } catch (error) {
     console.log(error);
 
@@ -179,7 +180,6 @@ export const VerifyEmail = async (req,res) => {
     });
   }
 };
-
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;

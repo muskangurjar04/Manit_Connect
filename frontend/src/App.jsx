@@ -22,10 +22,10 @@ function App() {
 
         <Route path="/thank-you" element={<ThankYou />} />
 
-         <Route path="/volunteer" element={<VolunteerDashboard />} /> 
+         {/* <Route path="/volunteer" element={<VolunteerDashboard />} />  */}
 
         <Route
-          path="/volunteer/followup"
+          path="/volunteer"
           element={<VolunteerFollowUp />}
         />
 

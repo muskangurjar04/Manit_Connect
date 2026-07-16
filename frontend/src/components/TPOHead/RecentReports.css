@@ -18,7 +18,7 @@ margin-bottom:25px;
 
 font-size:28px;
 
-color:#1d3557;
+color:#0f0f10;
 
 }
 
@@ -27,35 +27,32 @@ table{
 width:100%;
 
 border-collapse:collapse;
+overflow: hidden;
+border-radius: 12px;
 
 }
 
-thead{
-
-background:#2563eb;
-
-color:white;
-
+.recent-report-container table thead {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
 }
 
-th{
-
-padding:15px;
-
-text-align:left;
-
+.recent-report-container table thead th {
+  background: transparent !important;
+  color: white !important;
 }
-
 td{
 
 padding:15px;
 
 border-bottom:1px solid #eee;
-
+color: #374151;
+font-size: 14px;
 }
 
-tbody tr:hover{
+tbody tr {
+  transition: all 0.25s ease;
+}
 
-background:#f8fbff;
-
+tbody tr:hover {
+  background: #f3f4ff;
 }

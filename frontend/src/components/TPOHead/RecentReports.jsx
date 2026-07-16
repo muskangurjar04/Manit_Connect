@@ -1,29 +1,23 @@
+import { useEffect, useState } from "react";
+import { getAllFollowUps } from "../../services/followUpService";
 import "./RecentReports.css";
 
 function RecentReports() {
-  const reports = [
-    {
-      company: "Google",
-      hr: "Ankit Sharma",
-      date: "10 Jul 2026",
-      nextFollowUp: "15 Jul 2026",
-      status: "Waiting for Reply",
-    },
-    {
-      company: "Microsoft",
-      hr: "Priya Verma",
-      date: "08 Jul 2026",
-      nextFollowUp: "12 Jul 2026",
-      status: "Interested",
-    },
-    {
-      company: "Amazon",
-      hr: "Rohit Singh",
-      date: "05 Jul 2026",
-      nextFollowUp: "11 Jul 2026",
-      status: "Interview Scheduled",
-    },
-  ];
+
+  const [reports, setReports] = useState([]);
+
+  useEffect(() => {
+    loadReports();
+  }, []);
+
+  const loadReports = async () => {
+    try {
+      const res = await getAllFollowUps();
+      setReports(res.followUps);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="recent-report-container">
@@ -33,30 +27,35 @@ function RecentReports() {
       <table>
 
         <thead>
-
           <tr>
+            <th>Volunteer</th>
             <th>Company</th>
             <th>HR Contact</th>
             <th>Last Interaction</th>
             <th>Next Follow-Up</th>
             <th>Status</th>
           </tr>
-
         </thead>
 
         <tbody>
 
-          {reports.map((item, index) => (
+          {reports.map((item) => (
 
-            <tr key={index}>
+            <tr key={item._id}>
 
-              <td>{item.company}</td>
+              <td>{item.volunteer?.name}</td>
 
-              <td>{item.hr}</td>
+              <td>{item.companyName}</td>
 
-              <td>{item.date}</td>
+              <td>{item.hrName}</td>
 
-              <td>{item.nextFollowUp}</td>
+              <td>
+                {new Date(item.createdAt).toLocaleDateString()}
+              </td>
+
+              <td>
+                {new Date(item.nextFollowUp).toLocaleDateString()}
+              </td>
 
               <td>{item.status}</td>
 
