@@ -56,8 +56,15 @@ export const createFollowUp = async (req, res) => {
 
 export const getDashboardStats = async (req, res) => {
   try {
+   
+    const volunteerId = req.user.id;
 
-    const totalContacted = await FollowUp.countDocuments();
+    
+
+
+    const totalContacted = await FollowUp.countDocuments({
+  volunteer: volunteerId,
+});
 
     const todayStart = new Date();
     todayStart.setHours(0, 0, 0, 0);
@@ -66,18 +73,21 @@ export const getDashboardStats = async (req, res) => {
     todayEnd.setHours(23, 59, 59, 999);
 
     const todayCalls = await FollowUp.countDocuments({
-      interactionType: "Phone Call",
-      createdAt: {
-        $gte: todayStart,
-        $lte: todayEnd,
-      },
-    });
+  volunteer: volunteerId,
+  interactionType: "Phone Call",
+  createdAt: {
+    $gte: todayStart,
+    $lte: todayEnd,
+  },
+});
 
     const pending = await FollowUp.countDocuments({
-      status: "Waiting for Reply",
-    });
+  volunteer: volunteerId,
+  status: "Waiting for Reply",
+});
 
     const conversions = await FollowUp.countDocuments({
+      volunteer: volunteerId,
       status: "Placement Confirmed",
     });
 
