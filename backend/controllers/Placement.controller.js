@@ -1,4 +1,6 @@
 import Placement from "../models/Placement.js";
+import cloudinary from "../libs/cloudinary.js";
+import streamifier from "streamifier";
 
 // ================================
 // Student Submit Placement
