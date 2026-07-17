@@ -27,6 +27,8 @@ const [selectedReason, setSelectedReason] = useState("");
             <th>Enrollment</th>
             <th>Branch</th>
             <th>Company</th>
+            <th>Mode</th>
+            <th>Type</th>
             <th>Package</th>
             <th>Status</th>
            {title === "Rejected Queue" && (
@@ -71,6 +73,10 @@ const [selectedReason, setSelectedReason] = useState("");
                 <td>{item.branch}</td>
 
                 <td>{item.company}</td>
+
+                <td>{item.placementMode}</td>
+
+                <td>{item.placementType}</td>
 
                 <td>{item.package} LPA</td>
 

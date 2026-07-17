@@ -45,6 +45,8 @@ const exportPDF = () => {
       "Student",
       "Branch",
       "Company",
+       "Mode",
+       "Type",
       "Package (LPA)",
       "Verification Date"
     ]],
@@ -58,6 +60,10 @@ const exportPDF = () => {
       student.branch,
 
       student.company,
+
+      student.placementMode,
+
+      student.placementType,
 
       student.package,
 
@@ -119,6 +125,8 @@ const exportPDF = () => {
             <th>Student Name</th>
             <th>Branch</th>
             <th>Company</th>
+            <th>Mode</th>
+            <th>Type</th>
             <th>Package (LPA)</th>
             <th>Verification Date</th>
           </tr>
@@ -147,6 +155,10 @@ const exportPDF = () => {
                 <td>{student.branch}</td>
 
                 <td>{student.company}</td>
+
+                <td>{student.placementMode}</td>
+
+                <td>{student.placementType}</td>
 
                 <td>{student.package}</td>
 
