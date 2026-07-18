@@ -5,7 +5,7 @@ import {
   getPendingPlacements,
   verifyPlacement,
   rejectPlacement,
-} from "../controllers/Placement.js";
+} from "../controllers/Placement.controller.js";
 
 import { getAllPlacements } from "../controllers/AllController.js";
 import { getFacultyAnalytics } from "../controllers/FacultyController.js";
@@ -18,15 +18,12 @@ const PlacementRoutes = express.Router();
 
 // Student submits placement
 PlacementRoutes.post(
-  "/submit",
-  authMiddleware,
-  isStudent,
-  upload.single("offerLetter"),
+  "/submit",authMiddleware,upload.single("offerLetter"),
   submitPlacement
 );
 
 // Volunteer
-PlacementRoutes.post("/create", createPlacement);
+PlacementRoutes.post("/create", authMiddleware, createPlacement);
 PlacementRoutes.get("/pending", getPendingPlacements);
 
 // Faculty

@@ -13,3 +13,18 @@
     font-size: 16px;
     color: #6b7280;
 }
+@media(max-width:768px){
+
+.faculty-header{
+    margin:20px;
+}
+
+.faculty-title{
+    font-size:30px;
+}
+
+.faculty-subtitle{
+    font-size:14px;
+}
+
+}

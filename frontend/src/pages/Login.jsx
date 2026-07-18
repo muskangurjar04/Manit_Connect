@@ -9,15 +9,15 @@ const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
 
   const [loginData, setLoginData] = useState({
+    role: "",
     email: "",
-    password: "",
+    otp: "",
   });
+  const [otpSent, setOtpSent] = useState(false);
 
   const [registerData, setRegisterData] = useState({
     name: "",
     email: "",
-    password: "",
-    role: "",
   });
 
   // ---------------- Login ----------------
@@ -29,38 +29,66 @@ const Login = () => {
     });
   };
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+  const sendLoginOTP = async () => {
+  try {
+    if (!loginData.role || !loginData.email) {
+      return alert("Please select role and enter email.");
 
-    try {
-      const res = await axios.post(
-        "http://localhost:5000/auth/login",
-        loginData
-      );
-      localStorage.setItem("token", res.data.token);
-      console.log(res.data);
-      
-      alert(res.data.message);
-      navigate("/placement");
-
-const role = res.data.user.role;
-
-if (role === "Student") {
-  navigate("/student");
-} else if (role === "TPO Volunteer") {
-  navigate("/volunteer");
-} else if (role === "TPO Faculty") {
-  navigate("/faculty");
-}
-
-      // Later:
-      // navigate("/dashboard");
-    } catch (error) {
-      alert(error.response?.data?.message || "Login Failed");
     }
-  };
+
+    const res = await axios.post(
+      "http://localhost:5000/auth/send-login-otp",
+      {
+        email: loginData.email,
+        role: loginData.role,
+      }
+    );
+
+    alert(res.data.message);
+    setOtpSent(true);
+
+  } catch (error) {
+    alert(error.response?.data?.message || "Failed to send OTP");
+  }
+};
+
+const handleLogin = async (e) => {
+  e.preventDefault();
+
+  try {
+    const res = await axios.post(
+      "http://localhost:5000/auth/verify-login",
+      {
+        email: loginData.email,
+        otp: loginData.otp,
+      }
+    );
+
+    localStorage.setItem("token", res.data.token);
+
+    alert(res.data.message);
+
+    const role = res.data.user.role;
+
+    if (role === "Student") {
+      navigate("/student");
+    } else if (role === "TPO Volunteer") {
+      navigate("/volunteer");
+    } else if (role === "TPO Head") {
+      navigate("/tpo-head");     
+    } else if (role === "TPO Faculty") {
+      navigate("/faculty");
+    } else if (role === "Admin") {
+      navigate("/admin");
+    }
+
+  } catch (error) {
+    alert(error.response?.data?.message || "Login Failed");
+  }
+};
 
   // ---------------- Register ----------------
+
 
   const handleRegisterChange = (e) => {
     setRegisterData({
@@ -128,29 +156,55 @@ navigate("/verify", {
 
           <form onSubmit={handleLogin}>
 
-            <input
-              type="email"
-              name="email"
-              placeholder="Email Address"
-              value={loginData.email}
-              onChange={handleLoginChange}
-              required
-            />
+  <select
+    name="role"
+    value={loginData.role}
+    onChange={handleLoginChange}
+    required
+  >
+    <option value="">Select Role</option>
+    <option value="Student">Student</option>
+    <option value="TPO Volunteer">TPO Volunteer</option>
+    <option value="TPO Head">TPO Head</option>
+    <option value="TPO Faculty">TPO Faculty</option>
+    <option value="Admin">Admin</option>
+  </select>
 
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={loginData.password}
-              onChange={handleLoginChange}
-              required
-            />
+  <input
+    type="email"
+    name="email"
+    placeholder="Email Address"
+    value={loginData.email}
+    onChange={handleLoginChange}
+    required
+  />
 
-            <button className="main-btn">
-              Login
-            </button>
+  {!otpSent ? (
+    <button
+      type="button"
+      className="main-btn"
+      onClick={sendLoginOTP}
+    >
+      Send OTP
+    </button>
+  ) : (
+    <>
+      <input
+        type="text"
+        name="otp"
+        placeholder="Enter OTP"
+        value={loginData.otp}
+        onChange={handleLoginChange}
+        required
+      />
 
-          </form>
+      <button className="main-btn">
+        Login
+      </button>
+    </>
+  )}
+
+</form>
 
         ) : (
 
@@ -176,38 +230,6 @@ navigate("/verify", {
               required
             />
 
-            <select
-              name="role"
-              value={registerData.role}
-              onChange={handleRegisterChange}
-              required
-            >
-              <option value="">
-                Select Role
-              </option>
-
-              <option value="Student">
-                Student
-              </option>
-
-              <option value="TPO Volunteer">
-                TPO Volunteer
-              </option>
-
-              <option value="TPO Faculty">
-                TPO Faculty
-              </option>
-
-            </select>
-
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={registerData.password}
-              onChange={handleRegisterChange}
-              required
-            />
 
             <button className="main-btn">
               Create Account
@@ -222,8 +244,5 @@ navigate("/verify", {
     </div>
   );
 };
-
-
-
 
 export default Login;

@@ -18,19 +18,10 @@ const userSchema = new mongoose.Schema(
       default: null ,
     },
 
-    enrollmentNo: {
-   type: String,
-   default: "",
-   },
-
-branch: {
-  type: String,
-  default: "",
-},
  
     role: {
       type: String,
-      enum: ["Student", "TPO Volunteer","TPO Faculty","Admin",],
+      enum: ["Student", "TPO Volunteer", "TPO Head","TPO Faculty","Admin",],
       required: true,
     },
 

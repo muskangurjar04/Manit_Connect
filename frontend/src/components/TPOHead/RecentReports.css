@@ -1,0 +1,110 @@
+.recent-report-container{
+
+background:white;
+
+margin-top:35px;
+
+padding:30px;
+
+border-radius:18px;
+
+box-shadow:0 4px 18px rgba(0,0,0,.08);
+
+}
+
+.recent-report-container h2{
+
+margin-bottom:25px;
+
+font-size:28px;
+
+color:#0f0f10;
+
+}
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+overflow: hidden;
+border-radius: 12px;
+
+}
+
+.recent-report-container table thead {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
+}
+
+.recent-report-container table thead th {
+  background: transparent !important;
+  color: white !important;
+}
+td{
+
+padding:15px;
+
+border-bottom:1px solid #eee;
+color: #374151;
+font-size: 14px;
+}
+
+tbody tr {
+  transition: all 0.25s ease;
+}
+
+tbody tr:hover {
+  background: #f3f4ff;
+}
+.table-wrapper{
+
+overflow-x:auto;
+
+}
+
+@media (max-width:900px){
+
+.recent-report-container{
+
+padding:22px;
+
+}
+
+.recent-report-container h2{
+
+font-size:22px;
+
+}
+
+table{
+
+min-width:900px;
+
+}
+
+th,
+td{
+
+padding:12px;
+font-size:14px;
+
+}
+
+}
+
+@media (max-width:600px){
+
+.recent-report-container{
+
+padding:16px;
+margin-top:20px;
+
+}
+
+.recent-report-container h2{
+
+font-size:18px;
+
+}
+
+}

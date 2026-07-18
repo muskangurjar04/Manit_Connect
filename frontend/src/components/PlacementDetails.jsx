@@ -15,7 +15,7 @@ export default function PlacementDetails({ formData, handleChange }) {
     />
 </div>
 
-  <h2 className="text-2xl font-bold text-slate-900">
+ <h2 className="text-xl md:text-2xl font-bold text-slate-900">
     Placement Details
   </h2>
 
@@ -27,7 +27,7 @@ export default function PlacementDetails({ formData, handleChange }) {
       </div>
 
       {/* Body */}
-      <div className="p-8">
+     <div className="p-5 md:p-8">
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
@@ -43,7 +43,7 @@ export default function PlacementDetails({ formData, handleChange }) {
   value={formData.company}
   onChange={handleChange}
   placeholder="Google"
-              className="w-full h-14 rounded-xl border border-gray-200 bg-gray-50 px-4 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+              className="w-full h-12 md:h-14 rounded-xl border border-gray-200 bg-gray-50 px-4 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
             />
           </div>
 
@@ -60,7 +60,7 @@ export default function PlacementDetails({ formData, handleChange }) {
 value={formData.jobRole}
   onChange={handleChange}
   placeholder="Software Engineer"
-             className="w-full h-14 rounded-xl border border-gray-200 bg-gray-50 px-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+             className="w-full h-12 md:h-14 rounded-xl border border-gray-200 bg-gray-50 px-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
             />
           </div>
 
@@ -76,7 +76,7 @@ value={formData.jobRole}
               value={formData.package}
               onChange={handleChange}
               placeholder="18 LPA"
-              className="w-full h-14 rounded-xl border border-gray-200 bg-gray-50 px-4 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+              className="w-full h-12 md:h-14 rounded-xl border border-gray-200 bg-gray-50 px-4 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
             />
           </div>
 
@@ -90,7 +90,7 @@ value={formData.jobRole}
   name="placementType"
   value={formData.placementType}
   onChange={handleChange}
-  className="w-full h-14 rounded-xl border border-gray-200 bg-[#F8FAFC] px-4 text-gray-700 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none transition"
+  className="w-full h-12 md:h-14 rounded-xl border border-gray-200 bg-[#F8FAFC] px-4 text-gray-700 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none transition"
 >
   <option value="">Select Placement Type</option>
   <option value="Full Time">Full Time</option>
@@ -100,36 +100,7 @@ value={formData.jobRole}
 </select>
           </div>
 
-          {/* Joining Date */}
-          {/* <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">
-              Joining Date
-            </label>
-
-            <input
-              type="date"
-              name="joiningDate"
-              value={formData.joiningDate}
-              onChange={handleChange}
-              className="w-full h-14 rounded-xl border border-gray-200 bg-gray-50 px-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
-            />
-          </div> */}
-
-          {/* Work Location */}
-          {/* <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">
-              Work Location
-            </label>
-
-            <input
-              type="text"
-              name="workLocation"
-              value={formData.workLocation}
-              onChange={handleChange}
-              placeholder="Bangalore"
-              className="w-full h-14 rounded-xl border border-gray-200 bg-gray-50 px-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
-            />
-          </div> */}
+        
 
         </div>
 
@@ -141,7 +112,7 @@ value={formData.jobRole}
             Placement Mode
           </label>
 
-          <div className="flex gap-10 mt-3">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-10 mt-3">
 
             <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-gray-700">
               <input

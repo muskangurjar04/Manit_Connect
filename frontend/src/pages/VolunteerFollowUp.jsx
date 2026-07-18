@@ -1,23 +1,31 @@
+import { useState } from "react";
 import "../styles/VolunteerFollowUp.css";
 
 import TopBar from "../components/FollowUp/TopBar";
 import DashboardCards from "../components/FollowUp/DashboardCards";
-// import InteractionForm from "../components/FollowUp/InteractionForm";
 import CompanyFollowUpForm from "../components/FollowUp/CompanyFollowUpForm";
-// import RecentReports from "../components/FollowUp/RecentReports";
+import MyFollowUpsTable from "../components/FollowUp/MyFollowUpsTable";
 
 function VolunteerFollowUp() {
+
+  const [refresh, setRefresh] = useState(false);
+
+  const refreshDashboard = () => {
+    setRefresh((prev) => !prev);
+  };
+
   return (
     <div className="followup-page">
 
       <TopBar />
 
-      <DashboardCards />
+      <DashboardCards refresh={refresh} />
 
-      {/* <InteractionForm /> */}
-      <CompanyFollowUpForm />
+      <CompanyFollowUpForm
+        onSuccess={refreshDashboard}
+      />
 
-      {/* <RecentReports /> */}
+      <MyFollowUpsTable refresh={refresh} />
 
     </div>
   );

@@ -1,0 +1,138 @@
+.followup-history {
+  margin: 30px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.followup-history h2 {
+  margin-bottom: 20px;
+  color: #1e293b;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.followup-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.followup-table thead {
+  background: linear-gradient(90deg, #2563eb, #7c3aed);
+  color: white;
+}
+
+.followup-table th {
+  background: transparent;
+  color: white;
+  padding: 14px;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.followup-table td {
+  padding: 14px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+  color: #374151;
+}
+
+.followup-table tbody tr:hover {
+  background: #f8fafc;
+  transition: 0.3s;
+}
+
+.followup-history p {
+  text-align: center;
+  color: #64748b;
+  font-size: 16px;
+  padding: 30px;
+}
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-badge.interested {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status-badge.waiting-for-reply {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.status-badge.not-interested {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.status-badge.initial-contact-made {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.status-badge.interview-scheduled {
+  background: #ede9fe;
+  color: #7c3aed;
+}
+
+.status-badge.placement-confirmed {
+  background: #dcfce7;
+  color: #16a34a;
+}
+.followup-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+}
+
+.followup-table thead tr th:first-child {
+  border-top-left-radius: 10px;
+}
+
+.followup-table thead tr th:last-child {
+  border-top-right-radius: 10px;
+}
+.followup-table-wrapper{
+
+overflow-x:auto;
+
+}
+@media (max-width:768px){
+
+.followup-history{
+
+margin:15px;
+padding:18px;
+
+}
+
+.followup-history h2{
+
+font-size:20px;
+
+}
+
+.followup-table{
+
+min-width:900px;
+
+}
+
+.followup-table th,
+.followup-table td{
+
+padding:12px;
+
+font-size:13px;
+
+}
+
+}

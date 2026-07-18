@@ -1,6 +1,7 @@
 import express from 'express'
 import  { register,login ,SendOTP,
-  VerifyEmail,} from '../controllers/Auth.js'
+  VerifyEmail,sendLoginOTP,
+  verifyLoginOTP,} from '../controllers/Auth.js'
 
 import authMiddleware from "../middleware/authMiddleware.js";
 
@@ -10,6 +11,8 @@ AuthRoutes.post('/register',register)
 AuthRoutes.post("/sendotp",SendOTP);
 AuthRoutes.post("/verifyemail",VerifyEmail)
 AuthRoutes.post("/login", login);
+AuthRoutes.post("/send-login-otp", sendLoginOTP);
+AuthRoutes.post("/verify-login", verifyLoginOTP);
 
 AuthRoutes.get("/profile", authMiddleware, (req, res) => {
   res.status(200).json({

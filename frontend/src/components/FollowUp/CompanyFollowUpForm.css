@@ -115,3 +115,60 @@ cursor:pointer;
 background:#1e40af;
 
 }
+/* ---------- Tablet ---------- */
+
+@media (max-width:900px){
+
+.followup-form{
+
+padding:24px;
+
+}
+
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width:700px){
+
+.row{
+
+grid-template-columns:1fr;
+
+gap:15px;
+
+}
+
+.form-header h2{
+
+font-size:22px;
+
+}
+
+.followup-form{
+
+padding:18px;
+
+}
+
+.button-field{
+
+justify-content:stretch;
+
+}
+
+.button-field button{
+
+width:100%;
+
+}
+
+.field input,
+.field select,
+.field textarea{
+
+font-size:14px;
+
+}
+
+}

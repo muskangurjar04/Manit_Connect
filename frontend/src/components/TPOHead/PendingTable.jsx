@@ -18,7 +18,8 @@ const [selectedReason, setSelectedReason] = useState("");
   {title}
 </h2>
 
-      <table>
+     <div className="table-wrapper">
+<table>
 
         <thead>
 
@@ -27,6 +28,8 @@ const [selectedReason, setSelectedReason] = useState("");
             <th>Enrollment</th>
             <th>Branch</th>
             <th>Company</th>
+            <th>Mode</th>
+            <th>Type</th>
             <th>Package</th>
             <th>Status</th>
            {title === "Rejected Queue" && (
@@ -72,6 +75,10 @@ const [selectedReason, setSelectedReason] = useState("");
 
                 <td>{item.company}</td>
 
+                <td>{item.placementMode}</td>
+
+                <td>{item.placementType}</td>
+
                 <td>{item.package} LPA</td>
 
                 <td>
@@ -104,12 +111,23 @@ View Reason
                 
 
   {/* Offer Letter View */}
-  <td>
+  {/* <td>
   <button
     className="view-btn"
    onClick={() =>{
   window.open(item.offerLetter,"_blank");
 }}
+  >
+    View
+  </button>
+</td> */}
+<td>
+  <button
+    className="view-btn"
+    onClick={() => {
+      console.log("Offer URL:", item.offerLetter);
+      window.open(item.offerLetter, "_blank");
+    }}
   >
     View
   </button>
@@ -156,6 +174,7 @@ View Reason
         </tbody>
 
       </table>
+  </div>
      {showModal && (
 
 <div className="modal-overlay">

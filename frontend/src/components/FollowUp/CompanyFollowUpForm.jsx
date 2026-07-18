@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { createFollowUp } from "../../services/followUpService";
 import "./CompanyFollowUpForm.css";
-import "./CompanyFollowUpForm.css";
 
-function CompanyFollowUpForm() {
+
+function CompanyFollowUpForm({ onSuccess }) {
 
   const [formData, setFormData] = useState({
     companyName: "",
@@ -29,7 +29,12 @@ console.log(JSON.stringify(formData, null, 2));
 
     await createFollowUp(formData);
 
+    if (onSuccess) {
+  onSuccess();
+} 
+
     alert("Interaction Saved Successfully");
+
 
     setFormData({
       companyName: "",
@@ -93,7 +98,6 @@ console.log(JSON.stringify(formData, null, 2));
               value={formData.interactionType}
               onChange={handleChange}
             >
-
               <option>Phone Call</option>
 
               <option>Email</option>
@@ -103,6 +107,7 @@ console.log(JSON.stringify(formData, null, 2));
               <option>WhatsApp</option>
 
               <option>Meeting</option>
+
 
             </select>
 

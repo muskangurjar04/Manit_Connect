@@ -35,15 +35,16 @@ const placementSchema = new mongoose.Schema(
 
     placementType: {
       type: String,
-      enum: ["On-Campus", "Off-Campus"],
+      enum: ["Full Time", "6 Month Internship","2 Month Internship","PPO"],
       required: true,
     },
 
-    joiningDate: {
-      type: Date,
-      required: true,
+    placementMode: {
+       type: String,
+       enum: ["On Campus","Off Campus",],
+       required: true,
     },
-
+    
     offerLetter: {
       type: String,
       default: "",

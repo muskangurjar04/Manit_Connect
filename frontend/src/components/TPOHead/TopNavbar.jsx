@@ -12,7 +12,7 @@ const TopNavbar = ({ search, setSearch }) => {
       <div className="profile-section">
 
         <span>
-          TPO Volunteer
+          TPO Head Dashboard
         </span>
 
       </div>

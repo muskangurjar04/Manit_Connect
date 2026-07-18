@@ -3,14 +3,29 @@ import axios from "axios";
 const API = axios.create({
   baseURL: "http://localhost:5000",
 });
+API.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+
+    console.log("Token from localStorage:", token);
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  console.log("Headers:", config.headers);
+  return config;
+});
 
 // Student submits placement
 export const submitPlacement = async (formData) => {
+  const token = localStorage.getItem("token");
+
+  console.log("Student Token:", token);
+
   const response = await API.post(
     "/placement/submit",
     formData,
     {
       headers: {
+        Authorization: `Bearer ${token}`,
         "Content-Type": "multipart/form-data",
       },
     }
@@ -18,7 +33,6 @@ export const submitPlacement = async (formData) => {
 
   return response.data;
 };
-
 // Volunteer Dashboard
 export const getPendingPlacements = async () => {
   const res = await API.get("/placement/pending");

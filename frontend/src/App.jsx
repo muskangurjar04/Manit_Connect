@@ -1,33 +1,49 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import VerifyEmail from "./pages/VerifyEmail";
-import PlacementSubmission from "./pages/PlacementSubmission";
+import StudentDashboard from "./pages/StudentDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
 import ThankYou from "./pages/ThankYou";
+import TPOHeadDashboard from "./pages/TPOHeadDashboard";
+//import VolunteerDashboard from "./pages/VolunteerDashboard";
 import VolunteerFollowUp from "./pages/VolunteerFollowUp";
-// import StudentDashboard from "./pages/StudentDashboard";
-import VolunteerDashboard from "./pages/VolunteerDashboard";
 import FacultyDashboard from "./pages/FacultyDashboard";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+
         <Route path="/" element={<Login />} />
 
         <Route path="/verify" element={<VerifyEmail />} />
 
-        <Route path="/placement" element={<PlacementSubmission />} />
+        <Route path="/student" element={<StudentDashboard />} />
+
         <Route path="/thank-you" element={<ThankYou />} />
+
+         {/* <Route path="/volunteer" element={<VolunteerDashboard />} />  */}
+
         <Route
-    path="/volunteer/followup"
-    element={<VolunteerFollowUp />}
-/>
+          path="/volunteer"
+          element={<VolunteerFollowUp />}
+        />
 
-        {/* <Route path="/student" element={<StudentDashboard />} /> */}
+        <Route
+          path="/tpo-head"
+          element={<TPOHeadDashboard />}
+        />
 
-        <Route path="/volunteer" element={<VolunteerDashboard />} />
+        <Route
+          path="/faculty"
+          element={<FacultyDashboard />}
+        />
 
-        <Route path="/faculty" element={<FacultyDashboard />} />
+        <Route
+          path="/admin"
+          element={<AdminDashboard />}
+        />
+
       </Routes>
     </BrowserRouter>
   );

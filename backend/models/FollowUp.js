@@ -4,8 +4,14 @@ const followUpSchema = new mongoose.Schema(
   {
     volunteer: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
+      ref: "user",
+      required: false,
+    },
+      
+     volunteerName: {
+  type: String,
+  required: true,
+  trim: true,
     },
 
     companyName: {
