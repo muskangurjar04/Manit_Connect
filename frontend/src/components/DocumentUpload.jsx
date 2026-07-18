@@ -6,6 +6,10 @@ export default function DocumentUpload({ formData, handleChange, handleFileChang
 
   const onFileChange = (e) => {
   const file = e.target.files[0];
+   console.log(file);
+
+  if (!file) return;
+
 
   if (!file) return;
 

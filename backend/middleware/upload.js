@@ -1,17 +1,7 @@
 import multer from "multer";
-import { CloudinaryStorage } from "multer-storage-cloudinary";
-import cloudinary from "../libs/cloudinary.js";
 
-const storage = new CloudinaryStorage({
-  cloudinary,
-  params: {
-  folder: "offer_letters",
-  resource_type: "raw",
-  allowed_formats: ["pdf"],
-}
+const storage = multer.memoryStorage();
 
-
-});
 
 const upload = multer({
   storage,
@@ -24,7 +14,7 @@ const upload = multer({
     if (file.mimetype === "application/pdf") {
       cb(null, true);
     } else {
-      cb(new Error("Only PDF allowed"));
+      cb(new Error("Only PDF files are allowed"));
     }
   },
 });
