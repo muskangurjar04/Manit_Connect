@@ -1,6 +1,6 @@
 import Placement from "../models/Placement.js";
-import cloudinary from "../libs/cloudinary.js";
-import streamifier from "streamifier";
+
+import supabase from "../libs/supabase.js";
 
 // ================================
 // Student Submit Placement
@@ -23,12 +23,32 @@ export const submitPlacement = async (req, res) => {
     } = req.body;
 
        console.log(req.file);
+       console.log("Buffer length:", req.file.buffer.length);
+console.log("First 10 bytes:", req.file.buffer.slice(0, 10));
     if (!req.file) {
       return res.status(400).json({
         success: false,
         message: "Offer Letter PDF is required.",
       });
     }
+    const fileName = `${Date.now()}-${req.file.originalname}`;
+
+const { error } = await supabase.storage.from("offer_letter")
+  .upload(fileName, req.file.buffer, {
+    contentType: "application/pdf",
+    upsert: false,
+  });
+
+if (error) {
+  throw error;
+}
+
+const { data } = supabase.storage
+  .from("offer_letter")
+  .getPublicUrl(fileName);
+
+const fileUrl = data.publicUrl;
+
     
     const placement = await Placement.create({
       student: req.user.id, // Login user
@@ -40,9 +60,12 @@ export const submitPlacement = async (req, res) => {
       placementType,
       placementMode,
       remarks,
-      offerLetter: req.file.path,
+      offerLetter: fileUrl,
       status: "Pending",
     });
+    console.log("Saved Placement:");
+console.log(placement);
+console.log("Offer Letter:", placement.offerLetter);
 
 
     return res.status(201).json({

@@ -110,12 +110,23 @@ View Reason
                 
 
   {/* Offer Letter View */}
-  <td>
+  {/* <td>
   <button
     className="view-btn"
    onClick={() =>{
   window.open(item.offerLetter,"_blank");
 }}
+  >
+    View
+  </button>
+</td> */}
+<td>
+  <button
+    className="view-btn"
+    onClick={() => {
+      console.log("Offer URL:", item.offerLetter);
+      window.open(item.offerLetter, "_blank");
+    }}
   >
     View
   </button>

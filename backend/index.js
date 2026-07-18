@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
+console.log("INDEX URL:", process.env.SUPABASE_URL);
 
 import express from "express";
 import connectDB from "./libs/db.js";
