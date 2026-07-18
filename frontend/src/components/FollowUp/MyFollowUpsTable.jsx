@@ -40,6 +40,7 @@ function MyFollowUpsTable({ refresh }) {
       {followUps.length === 0 ? (
         <p>No follow-up records found.</p>
       ) : (
+        <div className="followup-table-wrapper">
         <table className="followup-table">
           <thead>
             <tr>
@@ -75,6 +76,7 @@ function MyFollowUpsTable({ refresh }) {
             ))}
           </tbody>
         </table>
+        </div>
       )}
     </div>
   );

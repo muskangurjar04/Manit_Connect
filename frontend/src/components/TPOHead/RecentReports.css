@@ -56,3 +56,55 @@ tbody tr {
 tbody tr:hover {
   background: #f3f4ff;
 }
+.table-wrapper{
+
+overflow-x:auto;
+
+}
+
+@media (max-width:900px){
+
+.recent-report-container{
+
+padding:22px;
+
+}
+
+.recent-report-container h2{
+
+font-size:22px;
+
+}
+
+table{
+
+min-width:900px;
+
+}
+
+th,
+td{
+
+padding:12px;
+font-size:14px;
+
+}
+
+}
+
+@media (max-width:600px){
+
+.recent-report-container{
+
+padding:16px;
+margin-top:20px;
+
+}
+
+.recent-report-container h2{
+
+font-size:18px;
+
+}
+
+}

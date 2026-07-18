@@ -4,7 +4,7 @@ export default function StudentIdentity({ formData, handleChange }) {
    <div className="bg-white rounded-3xl border border-slate-200 shadow-lg overflow-hidden mb-8">
 
       {/* Header */}
-    <div className="px-8 py-6 bg-violet-50 border-b border-violet-200">
+    <div className="px-5 md:px-8 py-5 md:py-6 bg-violet-50 border-b border-violet-200">
         <div className="flex items-center gap-3 mb-2">
 
   <CircleUserRound
@@ -12,7 +12,7 @@ export default function StudentIdentity({ formData, handleChange }) {
     className="text-blue-600"
   />
 
-  <h2 className="text-2xl font-bold text-slate-800">
+  <h2 className="text-xl md:text-2xl font-bold text-slate-800">
     Student Identity
   </h2>
 
@@ -26,7 +26,7 @@ export default function StudentIdentity({ formData, handleChange }) {
       {/* Body */}
 
       {/* <div className="p-8"> */}
-<div className="p-8 pt-10">
+<div className="p-5 md:p-8 pt-6 md:pt-10">
        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
 
           

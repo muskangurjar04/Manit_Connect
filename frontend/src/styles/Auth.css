@@ -38,7 +38,7 @@ body{
 
 .auth-card{
     position:relative;
-    width:420px;
+    width:100%;
     max-width:420px;
     margin:auto;
     background:#fff;
@@ -167,21 +167,61 @@ select:focus{
 
 /* Responsive */
 
-@media(max-width:500px){
+/* ---------- Tablet ---------- */
 
-.auth-card{
+@media (max-width: 768px) {
 
-    width:92%;
+  .auth-container{
+    padding:25px;
+  }
 
-    padding:30px 22px;
+  .auth-card{
+    max-width:500px;
+    padding:35px 30px;
+  }
+
+  .auth-card h1{
+    font-size:28px;
+  }
 
 }
 
-.auth-card h1{
+/* ---------- Mobile ---------- */
 
-    font-size:24px;
+@media (max-width: 480px){
 
-}
+  .auth-container{
+    padding:16px;
+  }
+
+  .auth-card{
+    width:100%;
+    max-width:100%;
+    padding:24px 18px;
+    border-radius:16px;
+  }
+
+  .auth-card h1{
+    font-size:22px;
+  }
+
+  .subtitle{
+    font-size:14px;
+    margin-bottom:20px;
+  }
+
+  .auth-tabs button{
+    font-size:14px;
+    padding:10px;
+  }
+
+  input,
+  select,
+  .main-btn,
+  .secondary-btn{
+    font-size:14px;
+    padding:12px;
+  }
 
 }
 

@@ -18,7 +18,8 @@ const [selectedReason, setSelectedReason] = useState("");
   {title}
 </h2>
 
-      <table>
+     <div className="table-wrapper">
+<table>
 
         <thead>
 
@@ -162,6 +163,7 @@ View Reason
         </tbody>
 
       </table>
+  </div>
      {showModal && (
 
 <div className="modal-overlay">

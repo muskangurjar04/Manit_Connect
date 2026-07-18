@@ -24,7 +24,9 @@ function RecentReports() {
 
       <h2>Recent Follow-Up Reports</h2>
 
-      <table>
+      <div className="table-wrapper">
+
+<table>
 
         <thead>
           <tr>
@@ -66,7 +68,7 @@ function RecentReports() {
         </tbody>
 
       </table>
-
+</div>
     </div>
   );
 }

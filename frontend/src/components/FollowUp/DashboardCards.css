@@ -89,3 +89,66 @@ grid-template-columns:1fr;
 }
 
 }
+/* ---------- Tablet ---------- */
+
+@media (max-width:900px){
+
+.dashboard-card{
+
+padding:22px;
+
+}
+
+.card-icon{
+
+width:56px;
+height:56px;
+
+}
+
+.card-content h2{
+
+font-size:28px;
+
+}
+
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width:600px){
+
+.dashboard-cards{
+
+margin:20px 0;
+gap:18px;
+
+}
+
+.dashboard-card{
+
+padding:18px;
+gap:15px;
+
+}
+
+.card-icon{
+
+width:48px;
+height:48px;
+
+}
+
+.card-content h2{
+
+font-size:24px;
+
+}
+
+.card-content p{
+
+font-size:12px;
+
+}
+
+}

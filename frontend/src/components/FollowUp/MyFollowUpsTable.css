@@ -100,3 +100,39 @@
 .followup-table thead tr th:last-child {
   border-top-right-radius: 10px;
 }
+.followup-table-wrapper{
+
+overflow-x:auto;
+
+}
+@media (max-width:768px){
+
+.followup-history{
+
+margin:15px;
+padding:18px;
+
+}
+
+.followup-history h2{
+
+font-size:20px;
+
+}
+
+.followup-table{
+
+min-width:900px;
+
+}
+
+.followup-table th,
+.followup-table td{
+
+padding:12px;
+
+font-size:13px;
+
+}
+
+}
