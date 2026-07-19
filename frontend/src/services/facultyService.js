@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:5000/placement";
+const API = "https://manit-connect-backend.onrender.com/placement";
 
 export const getFacultyAnalytics = async () => {
   const res = await axios.get(`${API}/faculty`);

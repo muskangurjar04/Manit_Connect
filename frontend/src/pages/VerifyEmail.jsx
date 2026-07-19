@@ -14,7 +14,7 @@ const VerifyEmail = () => {
   const sendOTP = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/auth/sendotp",
+        "https://manit-connect-backend.onrender.com/auth/sendotp",
         {
           email: formData.email,
         }
@@ -31,7 +31,7 @@ const VerifyEmail = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/auth/verifyemail",
+       "https://manit-connect-backend.onrender.com/auth/verifyemail",
         {
           email: formData.email,
           code: formData.code,

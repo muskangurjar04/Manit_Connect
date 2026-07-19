@@ -13,10 +13,10 @@ import nodemailer from 'nodemailer'
 const SendEmail=async()=>{
     try{
         const info = await transporter.sendMail({
-    from: '"MuskanCodes" <bankeymuskan@gmail.com>', // sender address
+    from: '"MANIT Connect" <bankeymuskan@gmail.com>', // sender address
     to: "muskanbankey78@gmail.com",  // list of recipients
-    subject: "Hello", // subject line
-    text: "Hello world?", // plain text body
+    subject: "MANIT Connect - Email Verification Code", // subject line
+    text: "Hello", // plain text body
     html: "<b>Hello world?</b>", // HTML body
   });
   console.log(info)

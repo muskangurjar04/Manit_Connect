@@ -37,7 +37,7 @@ const Login = () => {
     }
 
     const res = await axios.post(
-      "http://localhost:5000/auth/send-login-otp",
+      "https://manit-connect-backend.onrender.com/auth/send-login-otp",
       {
         email: loginData.email,
         role: loginData.role,
@@ -57,7 +57,7 @@ const handleLogin = async (e) => {
 
   try {
     const res = await axios.post(
-      "http://localhost:5000/auth/verify-login",
+      "https://manit-connect-backend.onrender.com/auth/verify-login",
       {
         email: loginData.email,
         otp: loginData.otp,
@@ -102,7 +102,7 @@ const handleLogin = async (e) => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/auth/register",
+       "https://manit-connect-backend.onrender.com/auth/register",
         registerData
       );
 

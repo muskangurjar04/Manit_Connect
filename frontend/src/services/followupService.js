@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:5000/followup";
+const API = "https://manit-connect-backend.onrender.com/followup";
 
 export const createFollowUp = async (followUpData) => {
   const token = localStorage.getItem("token");

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:5000/admin";
+const API = "https://manit-connect-backend.onrender.com/admin";
 
 const getToken = () => localStorage.getItem("token");
 
