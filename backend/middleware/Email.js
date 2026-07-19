@@ -10,7 +10,9 @@ export const SendVerificationCode=async(email,verificationCode)=>{
     html: verificationCode, // HTML body
   });
   console.log('Email send successfully',response)
-    }catch (error){
-console.log('Email error')
-    }
+  }catch (error){
+    console.log("========== EMAIL ERROR ==========");
+    console.log(error.message);
+    console.log(error);
+}
 }
