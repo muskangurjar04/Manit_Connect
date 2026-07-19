@@ -1,53 +1,50 @@
-import { BrevoClient } from "@getbrevo/brevo";
-
-const brevo = new BrevoClient({
-  apiKey: process.env.BREVO_API_KEY,
-});
+import axios from "axios";
 
 export const SendVerificationCode = async (email, verificationCode) => {
   try {
-    const result = await brevo.transactionalEmails.sendTransacEmail({
-      sender: {
-        name: "MANIT Connect",
-        email: "bankeymuskan@gmail.com",
-      },
-      to: [
-        {
-          email,
+    const response = await axios.post(
+      "https://api.brevo.com/v3/smtp/email",
+      {
+        sender: {
+          name: "MANIT Connect",
+          email: "bankeymuskan@gmail.com",
         },
-      ],
-      subject: "MANIT Connect - Email Verification Code",
-      htmlContent: `
-        <h2>Welcome to MANIT Connect</h2>
 
-        <p>Your verification code is:</p>
+        to: [
+          {
+            email: email,
+          },
+        ],
 
-        <h1 style="font-size:32px;color:#2563eb;">
-          ${verificationCode}
-        </h1>
+        subject: "MANIT Connect - Email Verification Code",
 
-        <p>This OTP is valid for <b>10 minutes</b>.</p>
+        htmlContent: `
+          <h2>Welcome to MANIT Connect</h2>
 
-        <p>If you didn't request this code, please ignore this email.</p>
+          <p>Your verification code is:</p>
 
-        <br>
+          <h1>${verificationCode}</h1>
 
-        <b>MANIT Connect Team</b>
-      `,
-    });
+          <p>This OTP is valid for 10 minutes.</p>
+        `,
+      },
+      {
+        headers: {
+          accept: "application/json",
+          "content-type": "application/json",
+          "api-key": process.env.BREVO_API_KEY,
+        },
+      }
+    );
 
-    console.log("✅ Email sent successfully");
-    console.log(result);
+    console.log("Email Sent");
+    console.log(response.data);
 
   } catch (error) {
-    console.error("❌ Brevo Error");
 
-    if (error.body) {
-      console.error(error.body);
-    } else {
-      console.error(error);
-    }
+    console.log(error.response?.data || error.message);
 
     throw error;
+
   }
 };
