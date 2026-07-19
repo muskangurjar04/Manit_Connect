@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createFollowUp } from "../../services/followUpService";
+import { createFollowUp } from "../../services/followupService";
 import "./CompanyFollowUpForm.css";
 
 

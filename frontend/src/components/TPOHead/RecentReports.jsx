@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllFollowUps } from "../../services/followUpService";
+import { getAllFollowUps } from "../../services/followupService";
 import "./RecentReports.css";
 
 function RecentReports() {

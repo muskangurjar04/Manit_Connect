@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 
 import { useEffect, useState } from "react";
-import { getDashboardStats } from "../../services/followUpService.js";
+import { getDashboardStats } from "../../services/followupService.js";
 
 function DashboardCards({ refresh }) {
   const [stats, setStats] = useState({

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getMyFollowUps } from "../../services/followUpService.js";
+import { getMyFollowUps } from "../../services/followupService.js";
 import "./MyFollowUpsTable.css";
 
 function MyFollowUpsTable({ refresh }) {
