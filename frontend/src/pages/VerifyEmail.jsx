@@ -12,19 +12,31 @@ const VerifyEmail = () => {
   });
 
   const sendOTP = async () => {
-    try {
-      const res = await axios.post(
-        "https://manit-connect-backend.onrender.com/auth/sendotp",
-        {
-          email: formData.email,
-        }
-      );
+  console.log("Button clicked");
 
-      alert(res.data.message);
-    } catch (error) {
-      alert(error.response?.data?.message || "Failed to send OTP");
-    }
-  };
+  try {
+    console.log("Calling API...");
+
+    const res = await axios.post(
+      "https://manit-connect-backend.onrender.com/auth/sendotp",
+      {
+        email: formData.email,
+      }
+    );
+
+    console.log("Response:", res);
+
+    alert(res.data.message);
+
+  } catch (error) {
+
+    console.log("ERROR:", error);
+
+    console.log("Response:", error.response);
+
+    alert(error.response?.data?.message || "Failed to send OTP");
+  }
+};
 
   const handleVerify = async (e) => {
     e.preventDefault();
