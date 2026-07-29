@@ -1,31 +1,50 @@
-import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import axios from "axios";
 
 export const SendVerificationCode = async (email, verificationCode) => {
   try {
-    const data = await resend.emails.send({
-      from: "MANIT Connect <onboarding@resend.dev>",
-      to: email,
-      subject: "MANIT Connect - Email Verification Code",
-      html: `
-        <h2>Welcome to MANIT Connect</h2>
+    const response = await axios.post(
+      "https://api.brevo.com/v3/smtp/email",
+      {
+        sender: {
+          name: "MANIT Connect",
+          email: "bankeymuskan@gmail.com",
+        },
 
-        <p>Your verification code is:</p>
+        to: [
+          {
+            email: email,
+          },
+        ],
 
-        <h1>${verificationCode}</h1>
+        subject: "MANIT Connect - Email Verification Code",
 
-        <p>This OTP is valid for 10 minutes.</p>
-      `,
-    });
+        htmlContent: `
+          <h2>Welcome to MANIT Connect</h2>
+
+          <p>Your verification code is:</p>
+
+          <h1>${verificationCode}</h1>
+
+          <p>This OTP is valid for 10 minutes.</p>
+        `,
+      },
+      {
+        headers: {
+          accept: "application/json",
+          "content-type": "application/json",
+          "api-key": process.env.BREVO_API_KEY,
+        },
+      }
+    );
 
     console.log("Email Sent");
-    console.log(data);
+    console.log(response.data);
 
   } catch (error) {
-    console.error("RESEND ERROR:");
-    console.error(error);
+
+    console.log(error.response?.data || error.message);
 
     throw error;
+
   }
 };
