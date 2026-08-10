@@ -25,7 +25,12 @@ const followUpSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-
+  
+   volunteerWhatsapp: {
+    type: String,
+    required: true,
+},
+  
     interactionType: {
       type: String,
       enum: [
@@ -62,6 +67,7 @@ const followUpSchema = new mongoose.Schema(
     },
   },
   {
+    
     timestamps: true,
   }
 );

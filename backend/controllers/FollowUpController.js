@@ -11,6 +11,7 @@ export const createFollowUp = async (req, res) => {
     const {
       companyName,
       hrName,
+      volunteerWhatsapp,
       interactionType,
       status,
       notes,
@@ -32,6 +33,7 @@ export const createFollowUp = async (req, res) => {
       volunteerName: user.name, // Automatically save volunteer name
       companyName,
       hrName,
+      volunteerWhatsapp,
       interactionType,
       status,
       notes,
