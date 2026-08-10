@@ -8,6 +8,7 @@ function CompanyFollowUpForm({ onSuccess }) {
   const [formData, setFormData] = useState({
     companyName: "",
     hrName: "",
+    volunteerWhatsapp: "",
     interactionType: "Phone Call",
     status: "Initial Contact Made",
     notes: "",
@@ -25,7 +26,7 @@ const handleSubmit = async (e) => {
 console.log(JSON.stringify(formData, null, 2));
 
   try {
-    console.log(formData);
+    console.log("FINAL DATA GOING TO BACKEND:", formData);
 
     await createFollowUp(formData);
 
@@ -39,6 +40,7 @@ console.log(JSON.stringify(formData, null, 2));
     setFormData({
       companyName: "",
       hrName: "",
+      volunteerWhatsapp: "",
       interactionType: "Phone Call",
       status: "Initial Contact Made",
       notes: "",
@@ -86,8 +88,37 @@ console.log(JSON.stringify(formData, null, 2));
 />
           </div>
 
-        </div>
 
+        
+
+ <div className="field">
+
+<label>
+Volunteer WhatsApp Number
+</label>
+
+<input
+type="tel"
+name="volunteerWhatsapp"
+placeholder="Enter your WhatsApp Number"
+value={formData.volunteerWhatsapp}
+onChange={handleChange}
+required
+/>
+
+
+<p
+style={{
+fontSize:"12px",
+color:"#666",
+marginTop:"5px"
+}}
+>
+This number will receive reminder messages.
+</p>
+
+   </div>
+</div>
         <div className="row">
 
           <div className="field">
