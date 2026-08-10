@@ -1,5 +1,6 @@
 import FollowUp from "../models/FollowUp.js";
 import User from "../models/User.js";
+import { SendFollowUpReminder } from "../middleware/Email.js";
 
 export const createFollowUp = async (req, res) => {
   try {
@@ -11,7 +12,6 @@ export const createFollowUp = async (req, res) => {
     const {
       companyName,
       hrName,
-      volunteerWhatsapp,
       interactionType,
       status,
       notes,
@@ -27,13 +27,14 @@ export const createFollowUp = async (req, res) => {
         message: "Volunteer not found",
       });
     }
+    console.log("VOLUNTEER NAME:", user.name);
+console.log("VOLUNTEER EMAIL:", user.email);
 
     const followUp = await FollowUp.create({
       volunteer: req.user.id,
       volunteerName: user.name, // Automatically save volunteer name
       companyName,
       hrName,
-      volunteerWhatsapp,
       interactionType,
       status,
       notes,
@@ -157,3 +158,4 @@ export const getAllFollowUps = async (req, res) => {
     });
   }
 };
+

@@ -26,10 +26,6 @@ const followUpSchema = new mongoose.Schema(
       trim: true,
     },
   
-   volunteerWhatsapp: {
-    type: String,
-    required: true,
-},
   
     interactionType: {
       type: String,
@@ -65,6 +61,11 @@ const followUpSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
+
+    reminderSent: {
+  type: Boolean,
+  default: false,
+},
   },
   {
     

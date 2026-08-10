@@ -12,4 +12,5 @@ router.get("/my", authMiddleware, getMyFollowUps);
 
 router.get("/all", authMiddleware, getAllFollowUps);
 
+
 export default router;

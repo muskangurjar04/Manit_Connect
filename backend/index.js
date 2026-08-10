@@ -9,6 +9,7 @@ import PlacementRoutes from "./routes/Placement.routes.js";
 import AdminRoutes from "./routes/Admin.routes.js";
 import FollowUpRoutes from "./routes/FollowUp.routes.js";
 import cors from "cors";
+import "./jobs/followUpReminder.js";
 
 connectDB();
 
