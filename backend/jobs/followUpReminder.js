@@ -3,7 +3,7 @@ import FollowUp from "../models/FollowUp.js";
 import User from "../models/User.js";
 import { SendFollowUpReminder } from "../middleware/Email.js";
 
-cron.schedule("0 9 * * *", async () => {
+export const sendTodayFollowUpReminders = async () => {
   console.log("⏰ Follow-up reminder job started");
 
   try {
@@ -15,13 +15,13 @@ cron.schedule("0 9 * * *", async () => {
     const endOfDay = new Date(now);
     endOfDay.setHours(23, 59, 59, 999);
 
-   const followUps = await FollowUp.find({
-  nextFollowUp: {
-    $gte: startOfDay,
-    $lte: endOfDay,
-  },
-  reminderSent: false,
-});
+    const followUps = await FollowUp.find({
+      nextFollowUp: {
+        $gte: startOfDay,
+        $lte: endOfDay,
+      },
+      reminderSent: false,
+    });
 
     console.log(`📋 Today's follow-ups: ${followUps.length}`);
 
@@ -43,20 +43,31 @@ cron.schedule("0 9 * * *", async () => {
       );
 
       await FollowUp.findByIdAndUpdate(followUp._id, {
-  reminderSent: true,
-});
+        reminderSent: true,
+      });
 
       console.log(
         `📧 Reminder sent to ${user.email} for ${followUp.companyName}`
       );
-      
     }
 
+    return {
+      success: true,
+      count: followUps.length,
+    };
   } catch (error) {
     console.error("❌ Reminder job error:", error);
+    throw error;
   }
-},
-{
+};
+
+// Local cron — 9:00 AM IST
+cron.schedule(
+  "0 9 * * *",
+  async () => {
+    await sendTodayFollowUpReminders();
+  },
+  {
     timezone: "Asia/Kolkata",
-}
+  }
 );

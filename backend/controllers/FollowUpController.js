@@ -1,6 +1,7 @@
 import FollowUp from "../models/FollowUp.js";
 import User from "../models/User.js";
 import { SendFollowUpReminder } from "../middleware/Email.js";
+import { sendTodayFollowUpReminders } from "../jobs/followUpReminder.js";
 
 export const createFollowUp = async (req, res) => {
   try {
@@ -151,6 +152,25 @@ export const getAllFollowUps = async (req, res) => {
 
   } catch (error) {
     console.log(error);
+
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const runFollowUpReminder = async (req, res) => {
+  try {
+    const result = await sendTodayFollowUpReminders();
+
+    res.status(200).json({
+      success: true,
+      message: "Follow-up reminders processed successfully",
+      result,
+    });
+  } catch (error) {
+    console.error("Reminder Endpoint Error:", error);
 
     res.status(500).json({
       success: false,
