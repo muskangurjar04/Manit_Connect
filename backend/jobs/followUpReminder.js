@@ -9,11 +9,16 @@ export const sendTodayFollowUpReminders = async () => {
   try {
     const now = new Date();
 
-    const startOfDay = new Date(now);
-    startOfDay.setHours(0, 0, 0, 0);
+const istDate = new Intl.DateTimeFormat("en-CA", {
+  timeZone: "Asia/Kolkata",
+}).format(now);
 
-    const endOfDay = new Date(now);
-    endOfDay.setHours(23, 59, 59, 999);
+const startOfDay = new Date(`${istDate}T00:00:00+05:30`);
+const endOfDay = new Date(`${istDate}T23:59:59.999+05:30`);
+
+  console.log("🇮🇳 IST DATE:", istDate);
+console.log("START:", startOfDay.toISOString());
+console.log("END:", endOfDay.toISOString());
 
     const followUps = await FollowUp.find({
       nextFollowUp: {
@@ -23,7 +28,20 @@ export const sendTodayFollowUpReminders = async () => {
       reminderSent: false,
     });
 
-    console.log(`📋 Today's follow-ups: ${followUps.length}`);
+ console.log(`📋 Today's follow-ups: ${followUps.length}`);
+
+    console.log(
+  "FOLLOWUPS FOUND:",
+  followUps.map((f) => ({
+    id: f._id,
+    company: f.companyName,
+    nextFollowUp: f.nextFollowUp,
+    reminderSent: f.reminderSent,
+  }))
+);
+  
+
+   
 
     for (const followUp of followUps) {
       const user = await User.findById(followUp.volunteer);
