@@ -30,18 +30,7 @@ console.log("END:", endOfDay.toISOString());
 
  console.log(`📋 Today's follow-ups: ${followUps.length}`);
 
-    console.log(
-  "FOLLOWUPS FOUND:",
-  followUps.map((f) => ({
-    id: f._id,
-    company: f.companyName,
-    nextFollowUp: f.nextFollowUp,
-    reminderSent: f.reminderSent,
-  }))
-);
-  
 
-   
 
     for (const followUp of followUps) {
       const user = await User.findById(followUp.volunteer);
@@ -79,13 +68,13 @@ console.log("END:", endOfDay.toISOString());
   }
 };
 
-// Local cron — 9:00 AM IST
-cron.schedule(
-  "0 9 * * *",
-  async () => {
-    await sendTodayFollowUpReminders();
-  },
-  {
-    timezone: "Asia/Kolkata",
-  }
-);
+// // Local cron — 9:00 AM IST
+// cron.schedule(
+//   "0 9 * * *",
+//   async () => {
+//     await sendTodayFollowUpReminders();
+//   },
+//   {
+//     timezone: "Asia/Kolkata",
+//   }
+// );

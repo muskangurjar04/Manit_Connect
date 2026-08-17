@@ -164,17 +164,10 @@ export const runFollowUpReminder = async (req, res) => {
   try {
     await sendTodayFollowUpReminders();
 
-    res.status(200).json({
-      success: true,
-      message: "Follow-up reminders processed successfully",
-    });
+    return res.status(200).send("OK");
   } catch (error) {
     console.error("Reminder Endpoint Error:", error);
 
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
+    return res.status(500).send("Reminder job failed");
   }
 };
-
